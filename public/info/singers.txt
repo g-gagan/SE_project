@@ -1,0 +1,13 @@
+Jazz,Gagan
+Pop,Michael Jackson
+Jazz,Ganesh
+Pop,Anisha
+Jazz,Karun
+Pop,Arun
+Jazz,Sanjana
+Metallic,Gary
+Classic,Guru
+Metallic,Harry
+Classic,Shastry
+Classic,Annai
+Pop,Ronaldo
