@@ -5,7 +5,7 @@ const app=express();
 const expressJWT = require('express-jwt');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
-const port = 80;
+const port = 3000;
 const secret='risotto'; //token used
 const database = require('./database.js');
 const mailer = require('./mailer.js');
@@ -31,18 +31,30 @@ app.post('/index',(req,res)=>{
 	database.checkLoginEntry(req.body.user,req.body.password,(status)=>{
 		if(status==200){
 			const token=jwt.sign({'Username':req.body.user},secret);
-			const otp=Math.floor((Math.random()*2345)+1);
+			const otp=Math.floor((Math.random()*2345)+1).toString();
 			mailer.sendMail({ //MESSAGE OBJECT
                         from: '"Online Paper Evaluation Portal" <risottopenne@gmail.com>',
                         to: req.body.user,
                         subject: 'Login Authentication',
                         text: 'Some text',
                         //html: 'To find out later-ask gagan'
-                        html: 'Your OTP is' + otp.toString()
-                    }, function(data) {
-                      res.sendStatus(200);
+                        html: 'Your OTP is ' + otp
+
+                    },
+
+                     function(data) {
+                    	console.log("Mahesh");
+                    	database.addLogin(req.body.user,otp, (status) => {
+                    		//if(status==200)
+                    			//res.sendStatus(status);
+
+                    	console.log(status);
+                      	res.sendStatus(status);
+                      	//console.log("w2");
+                    });
+
                     });			
-			res.status(200).send(token);
+			//res.status(200).send(token);
 		}
 		
 		else if(status==404){
