@@ -32,33 +32,6 @@
 	-->
 <script>
 
-	function showreg()
-	{
-		siginheader = document.getElementById("signinheader");
-		sigupheader = document.getElementById("signupheader");
-		sigin = document.getElementById("signindiv");
-		sigup = document.getElementById("signupdiv");
-		siginheader.style=" display:none;";
-		sigupheader.style=" display:block;";
-		sigin.style=" display:none;";
-		sigup.style=" display:block;";
-		navsig= document.getElementById("navsign");
-		navsign.innerHTML="Register";
-	}
-
-	function showsign()
-	{
-		siginheader = document.getElementById("signinheader");
-		sigupheader = document.getElementById("signupheader");
-		sigin = document.getElementById("signindiv");
-		sigup = document.getElementById("signupdiv");
-		siginheader.style=" display:block;";
-		sigupheader.style=" display:none;";
-		sigin.style=" display:block;";
-		sigup.style=" display:none;";
-		navsig= document.getElementById("navsign");
-		navsign.innerHTML="SIGN IN";
-	}
 </script>
 
 </style>
@@ -115,12 +88,12 @@
       function drawVisualization() {
         // Some raw data (not necessarily accurate)
         var data = google.visualization.arrayToDataTable([
-         ['Subjects',    'Software Engineering', 'OOMD',   'Machine Learning', 'Big Data', 'Data Structure', 'Average'],
-         ['01FB14ECS01',          95,               88,         93,             89,            86,            90.2],
-         ['01FB14ECS02',          82,               78,         89,             87,            89,             83],
-         ['01FB14ECS03',          76,               72,         78,             79,            78,              85],
-         ['01FB14ECS04',          83,               79,         75,             88,            89,              86],
-         ['01FB14ECS05',          78,               76,         88,             89,            91,               89]
+         ['Subjects',    'Software Engineering'],
+         ['01FB14ECS01',          95],
+         ['01FB14ECS02',          82],
+         ['01FB14ECS03',          76],
+         ['01FB14ECS04',          83],
+         ['01FB14ECS05',          78]
       ]);
 
     var options1 = {
