@@ -30,18 +30,30 @@
     <![endif]-->
 <script>
 
-	function showreg(){
-		siginheader = document.getElementById("signinheader");
-		sigupheader = document.getElementById("signupheader");
-		sigin = document.getElementById("signindiv");
-		sigup = document.getElementById("signupdiv");
-		siginheader.style=" display:none;";
-		sigupheader.style=" display:block;";
-		sigin.style=" display:none;";
-		sigup.style=" display:block;";
-		navsig= document.getElementById("navsign");
-		navsign.innerHTML="Register";
+	
+	function selectfunc()
+	{
+		var x=document.getElementById("t2");
+		x.style.display="block";
+	}
+
+	
+	function showrev(event){
+		console.log("hi");
+		var qno_remarks = event.target;
+		var revboxid = qno_remarks.id + "rev";
+		//var bla=qno_remarks
+		document.getElementById(revboxid).style.display="block";
+		//document.getElementById(revboxid).value="bla";
+		
+		}	
+		function abc(event)
+		{
+		var x=event.target;
+		//var y = x.id + "rev";
+		document.getElementById(x.id).style.display="none";
 		}
+		
 		function showsign(){
 		siginheader = document.getElementById("signinheader");
 		sigupheader = document.getElementById("signupheader");
@@ -54,6 +66,29 @@
 		navsig= document.getElementById("navsign");
 		navsign.innerHTML="SIGN IN";
 		}
+		function sendData()
+	{
+		document.getElementById("ddd").innerHTML = "Error";
+		xhr=new XMLHttpRequest();
+		xhr.onreadystatechange=Nodedata;
+		xhr.open("POST","http://",true);
+		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhr.send(abc.json);
+	}
+	function Nodedata()
+	{
+		if (xhr.readyState == 4 && xhr.status == 200) 
+		{
+		   
+		   document.getElementById("ddd").innerHTML = "Error";
+		}
+	}
+	function viewpaper()
+	{
+		document.getElementById("ansscr").style.display=block;
+		document.getElementById("key").style.display=block;
+		document.getElementById("table1").style.display=block;
+	}
 </script>
 </head>
 
@@ -100,81 +135,96 @@
         <div class="container" id = "topS">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Paper Evaluation</h2>
+                    <h2>Paper Review</h2>
                     <hr class="star-primary">
                 </div>
 			</div>
-         
-            <div>
-                <div class="col-sm-10" id="pfimg1">
-                    <br><br>
-					<embed src="pdf/1.pdf" width="100%" height="600px" />	
+        
+		<center><p>Choose Subject: <select id="subject" onchange="viewpaper()"></center>
+			<option> </option>
+			<option>Machine Learning </option>
+			<option>SE</option>
+		</select>
+
+
+		<center>
+		<div id = "t2" style="display:none">
+		<table id="studenttable" border="1" width="50%">
+
+		<tr>
+			<th><center>Student Name</center></th>
+			<th><center>Answer Script</center></th>
+		</tr>
+		</table>
+		</div>
+		</center>
+
+
+		  <div  id="pfimg1">
+                   <embed src="pdf/1.pdf" id="ansscr" width="48%" height="400px" style="display:none"  />
+				   <embed src="pdf/1.pdf" id="key" width="48%" height="400px" style="display:none" />
+					
+					
                    
-                </div>
+         </div>
+				
                 <div class="col-sm-2 portfolio-item" id="pfimg1">
                     <img src="img/2-22.jpg" class="img-circle" height = "200px" width = "200px" alt=""/>
 					<br><br>
-					<table border="solid">
+					
+					<table border="solid" id="table1" style="display:block">
 						
 						<tr>
 							<td>1a</td>
-							<td> <input type="text" /> </td>
-						</tr>
-						<tr>
+							<td> <input type="text" style="width: 30px; height: 100%" id="1a" onfocus="showrev(event)" disabled  />
+						
 							<td>1b</td>
-							<td> <input type="text" /> </td>
-						</tr>
-						<tr>
+							<td> <input type="text" style="width: 30px; height: 100%" id="1b" onfocus="showrev(event)"  /> 
+							
 							<td>1c</td>
-							<td> <input type="text" /> </td>
-						</tr>
-						<tr>
+							<td> <input type="text" style="width: 30px; height: 100%" id="1c" onfocus="showrev(event)" /> 
+						
 							<td>2a</td>
-							<td> <input type="text" /> </td>
-						</tr>
-						<tr>
+							<td> <input type="text" style="width: 30px; height: 100%" id="2a" /> 
+						
 							<td>2b</td>
-							<td> <input type="text" /> </td>
-						</tr>
-						<tr>
+							<td> <input type="text" style="width: 30px; height: 100%" id="2b" /> 
+							
 							<td>2c</td>
-							<td> <input type="text" /> </td>
-						</tr>
-						<tr>
+							<td> <input type="text" style="width: 30px; height: 100%" id="2c" /> 
+							
 							<td>3a</td>
-							<td> <input type="text" /> </td>
-						</tr>
-						<tr>
+							<td> <input type="text" style="width: 30px; height: 100%" id="3a" /> 
+						
 							<td>3b</td>
-							<td> <input type="text" /> </td>
+							<td> <input type="text" style="width: 30px; height: 100%" id="3b" /> 
+							
+							<td>3c</td>
+							<td> <input type="text" style="width: 30px; height: 100%" id="3c" /> 
 						</tr>
-						<tr>
-							<td>4a</td>
-							<td> <input type="text" /> </td>
-						</tr>
-						<tr>
-							<td>4b</td>
-							<td> <input type="text" /> </td>
-						</tr>
-						<tr>
-							<td>4c</td>
-							<td> <input type="text" /> </td>
-						</tr>
-						<tr>
-							<td>5a</td>
-							<td> <input type="text" /> </td>
-						</tr>
-						<tr>
-							<td>5b</td>
-							<td> <input type="text" /> </td>
-						</tr>
+						</table>
+						
+					<table>
+					<tr>
+						<td><input type="text" style="width: 250px; height: 100%; display:none" id="1arev" onblur="abc(event)" ;/>
+					</tr>
+					<tr>
+						<td><input type="text" style="width: 250px; height: 100%; display:none" id="1brev" onblur="abc(event)" />
+					</tr>
+					<tr>
+						<td><input type="text" style="width: 250px; height: 100%; display:none" id="1crev" onblur="abc(event)" />
+					</tr>
+					
+					
 					</table>
                 </div>
             </div>
+			
 
          
 
         </div>
+
     </section>
 	
 	

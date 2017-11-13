@@ -31,12 +31,14 @@ app.post('/index',(req,res)=>{
 	database.checkLoginEntry(req.body.user,req.body.password,(status)=>{
 		if(status==200){
 			const token=jwt.sign({'Username':req.body.user},secret);
+			const otp=Math.floor((Math.random()*2345)+1);
 			mailer.sendMail({ //MESSAGE OBJECT
                         from: '"Online Paper Evaluation Portal" <risottopenne@gmail.com>',
                         to: req.body.user,
                         subject: 'Login Authentication',
                         text: 'Some text',
-                        html: 'To find out later-ask gagan'
+                        //html: 'To find out later-ask gagan'
+                        html: 'Your OTP is' + otp.toString()
                     }, function(data) {
                       res.sendStatus(200);
                     });			

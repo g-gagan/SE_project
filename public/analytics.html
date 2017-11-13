@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>PES Examinations</title>
+    <title>Analytics</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -28,9 +28,12 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+	<!--  Pie chart functio
+	-->
 <script>
 
-	function showreg(){
+	function showreg()
+	{
 		siginheader = document.getElementById("signinheader");
 		sigupheader = document.getElementById("signupheader");
 		sigin = document.getElementById("signindiv");
@@ -41,8 +44,10 @@
 		sigup.style=" display:block;";
 		navsig= document.getElementById("navsign");
 		navsign.innerHTML="Register";
-		}
-		function showsign(){
+	}
+
+	function showsign()
+	{
 		siginheader = document.getElementById("signinheader");
 		sigupheader = document.getElementById("signupheader");
 		sigin = document.getElementById("signindiv");
@@ -53,13 +58,88 @@
 		sigup.style=" display:none;";
 		navsig= document.getElementById("navsign");
 		navsign.innerHTML="SIGN IN";
-		}
+	}
 </script>
+
+</style>
+	
+	<!-- pie chart function  Start-->
+	  <!--Load the AJAX API-->
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script type="text/javascript">
+	
+		  // Load the Visualization API and the corechart package.
+		  google.charts.load('current', {'packages':['corechart']});
+	
+		  // Set a callback to run when the Google Visualization API is loaded.
+		  google.charts.setOnLoadCallback(drawChart);
+	
+		  // Callback that creates and populates a data table,
+		  // instantiates the pie chart, passes in the data and
+		  // draws it.
+		 function drawChart() 
+			{
+			// Create the data table.
+			var data = new google.visualization.DataTable();
+			data.addColumn('string', 'Topping');
+			data.addColumn('number', 'Slices');
+			data.addRows([
+			  ['S', 3],
+			  ['A', 1],
+			  ['B', 1],
+			  ['C', 1],
+			  ['E', 2],
+			  ['F', 1]
+			  
+			]);
+	
+			// Set chart options
+			var options = {'title':'Students Marks',
+						   'width':600,
+						   'height':300};
+	
+			// Instantiate and draw our chart, passing in some options.
+			var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+			chart.draw(data, options );
+		  }
+		</script>
+      <!-- pie chart function end -->
+	<!-- Combo chart function start -->
+	
+	
+     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawVisualization);
+
+      function drawVisualization() {
+        // Some raw data (not necessarily accurate)
+        var data = google.visualization.arrayToDataTable([
+         ['Subjects',    'Software Engineering', 'OOMD',   'Machine Learning', 'Big Data', 'Data Structure', 'Average'],
+         ['01FB14ECS01',          95,               88,         93,             89,            86,            90.2],
+         ['01FB14ECS02',          82,               78,         89,             87,            89,             83],
+         ['01FB14ECS03',          76,               72,         78,             79,            78,              85],
+         ['01FB14ECS04',          83,               79,         75,             88,            89,              86],
+         ['01FB14ECS05',          78,               76,         88,             89,            91,               89]
+      ]);
+
+    var options1 = {
+      title : 'Students Scores',
+      vAxis: {title: 'Percentage'},
+      hAxis: {title: 'Students'},
+      seriesType: 'bars',
+      series: {5: {type: 'line'}}
+    };
+
+    var chart = new google.visualization.ComboChart(document.getElementById('chart_div1'));
+    chart.draw(data, options1);
+  }
+    </script>
+<!-- Combo chart function End -->
+	
 </head>
 
-<body id="page-top" class="index">
-<div id="skipnav"><a href="#maincontent">Skip to main content</a></div>
-
+	<body id="page-top" class="index" onLoad="drawChart();drawVisualization()">
     <!-- Navigation -->
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
         <div class="container">
@@ -68,7 +148,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="#page-top">PES Examinations</a>
+                <a class="navbar-brand" href="#page-top">Analytics</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -78,14 +158,12 @@
                         <a href="#page-top"></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#contact" id="navsign">Sign in</a>
+                        <a href="#pie" id="navsign">Pie Chart</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#portfolio">Information</a>
+                        <a href="#combo">Combo Chart</a>
                     </li>
-                    <li class="page-scroll">
-                        <a href="#about">About</a>
-                    </li>
+                   
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -93,133 +171,57 @@
         <!-- /.container-fluid -->
     </nav>
 
-
-    <!-- Portfolio Grid Section -->
-    <section id="portfolio">
-	<br><br><br>
-        <div class="container" id = "topS">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Paper Evaluation</h2>
-                    <hr class="star-primary">
-                </div>
+    <!-- Header -->
+   <center> 
+	<div id="pie">  </div>
+       <div class="row col-lg-12">
+          <div class="intro-text">
+            <br><br><br>
 			</div>
-         
-            <div>
-                <div class="col-sm-10" id="pfimg1">
-                    <br><br>
-					<embed src="pdf/1.pdf" width="100%" height="600px" />	
-                   
-                </div>
-                <div class="col-sm-2 portfolio-item" id="pfimg1">
-                    <img src="img/2-22.jpg" class="img-circle" height = "200px" width = "200px" alt=""/>
+			 <div class="col-lg-12 text-center" >		
 					<br><br>
-					<table border="solid">
-						
-						<tr>
-							<td>1a</td>
-							<td> <input type="text" /> </td>
-						</tr>
-						<tr>
-							<td>1b</td>
-							<td> <input type="text" /> </td>
-						</tr>
-						<tr>
-							<td>1c</td>
-							<td> <input type="text" /> </td>
-						</tr>
-						<tr>
-							<td>2a</td>
-							<td> <input type="text" /> </td>
-						</tr>
-						<tr>
-							<td>2b</td>
-							<td> <input type="text" /> </td>
-						</tr>
-						<tr>
-							<td>2c</td>
-							<td> <input type="text" /> </td>
-						</tr>
-						<tr>
-							<td>3a</td>
-							<td> <input type="text" /> </td>
-						</tr>
-						<tr>
-							<td>3b</td>
-							<td> <input type="text" /> </td>
-						</tr>
-						<tr>
-							<td>4a</td>
-							<td> <input type="text" /> </td>
-						</tr>
-						<tr>
-							<td>4b</td>
-							<td> <input type="text" /> </td>
-						</tr>
-						<tr>
-							<td>4c</td>
-							<td> <input type="text" /> </td>
-						</tr>
-						<tr>
-							<td>5a</td>
-							<td> <input type="text" /> </td>
-						</tr>
-						<tr>
-							<td>5b</td>
-							<td> <input type="text" /> </td>
-						</tr>
-					</table>
+				 <h2> PIE CHART </h2>
+				 <br>
+                </div>
+	   <div id="chart_div">
+			</div>
+	      </div>
+      </div>
+	  </center>
+   
+  	   <div id="combo"></div>
+            <hr style="height:5px;border:none;color:#091933;background-color:#091933;" />
+            <br>
+			
+          <div class="row">
+		
+               <div class="col-lg-12 text-center" >		
+					
+				 <h2> Combo CHART </h2>
+				 
+                </div>
+                <div class="col-sm-8 portfolio-item" id="pfimg11">
+                    <br><br>
+					<div id="chart_div1" style="width: 900px; height: 300px;"></div>
                 </div>
             </div>
-
-         
 
         </div>
     </section>
 	
 	
+	
     <!-- Footer -->
     <footer class="text-center">
-        <div class="footer-above">
-            <div class="container">
                 <div class="row">
-                    <div class="footer-col col-md-4">
-                        <h3>Location</h3>
-                        <p>PES Univerity
-                            <br>Bengaluru, India</p>
-                    </div>
-                    <div class="footer-col col-md-4">
-                        <h3>Around the Web</h3>
-                        <ul class="list-inline">
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><span class="sr-only">Facebook</span><i class="fa fa-fw fa-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><span class="sr-only">Google Plus</span><i class="fa fa-fw fa-google-plus"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><span class="sr-only">Twitter</span><i class="fa fa-fw fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><span class="sr-only">Linked In</span><i class="fa fa-fw fa-linkedin"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><span class="sr-only">Dribble</span><i class="fa fa-fw fa-dribbble"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="footer-col col-md-4">
-                        <h3>About AudioGram</h3>
-                        <p>AudioGram is a platform for music enthusiasts.</p>
-                    </div>
-                </div>
+                                     </div>
             </div>
         </div>
         <div class="footer-below">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        Copyright &copy; Audiogram.com 2017
+                        Copyright &copy; pes-examinations.edu 2017
                     </div>
                 </div>
             </div>
@@ -247,5 +249,4 @@
     <script src="js/freelancer.min.js"></script>
 
 </body>
-
 </html>

@@ -29,7 +29,6 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 <script>
-	
 
 	function showreg()
 	{
@@ -73,6 +72,17 @@
             	window.location.href = "correction.html";
         	}
 		);
+
+		var usr = document.getElementById("sid").value;
+		var pwd = document.getElementById("spwd").value;
+
+		$.post("http://localhost:3000/index",{"user":usr,"password":pwd}, 
+			function(result)
+			{
+				//if(result=="OK")
+					window.location.href="otp.html";
+        	}
+			);
 	}
 
 </script>
@@ -209,6 +219,7 @@
                             <div class="clearfix"></div>
                             <div class="col-lg-12 text-center">
                                 <div id="success"></div>
+
                                 <button type="submit" id = "signInButton" onclick = "postSignInData()" class="btn btn-danger">Sign In</button>
                             </div>
                             </div>
