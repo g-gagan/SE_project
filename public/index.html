@@ -60,27 +60,13 @@
 
 	function postSignInData()
 	{
-
-		var usr = document.getElementById("sid").value;
-
-		var pwd = document.getElementById("spwd").value;
-
-		$.post("http://localhost:80/index",{"user":"jyotsna.prasad3@gmail.com","password":"jyo123"}, 
-			function(result)
-			{
-            	alert("worked");
-            	window.location.href = "correction.html";
-        	}
-		);
-
 		var usr = document.getElementById("sid").value;
 		var pwd = document.getElementById("spwd").value;
 
 		$.post("http://localhost:3000/index",{"user":usr,"password":pwd}, 
 			function(result)
 			{
-				//if(result=="OK")
-					window.location.href="otp.html";
+				window.location.href="otp.html";
         	}
 			);
 	}

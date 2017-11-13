@@ -31,7 +31,7 @@ app.post('/index',(req,res)=>{
 	database.checkLoginEntry(req.body.user,req.body.password,(status)=>{
 		if(status==200){
 			const token=jwt.sign({'Username':req.body.user},secret);
-			const otp=Math.floor((Math.random()*2345)+1);
+			const otp=randomstring.generate({length:6, charset:'numeric'});
 			mailer.sendMail({ //MESSAGE OBJECT
                         from: '"Online Paper Evaluation Portal" <risottopenne@gmail.com>',
                         to: req.body.user,
