@@ -29,7 +29,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 <script>
-	$("#sid").click(postSignInData());
+	
 
 	function showreg()
 	{
@@ -61,14 +61,17 @@
 
 	function postSignInData()
 	{
-		var usr = document.getElementById("sid");
-		var pwd = document.getElementById("pwd");
 
-		$.post("http://localhost:3000/index",{"user":"mahajan.manik96@gmail.com","password":"manik123"}, 
+		var usr = document.getElementById("sid").value;
+
+		var pwd = document.getElementById("spwd").value;
+
+		$.post("http://localhost:80/index",{"user":"jyotsna.prasad3@gmail.com","password":"jyo123"}, 
 			function(result)
 			{
-            			alert("worked");
-        		}
+            	alert("worked");
+            	window.location.href = "correction.html";
+        	}
 		);
 	}
 
@@ -192,13 +195,13 @@
 							<!-- <div class = "col-md-4"></div> -->
                             <div class="center-block" style="width:500px;">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Your ID *" id="sid">
+                                    <input type="text" class="form-control" placeholder="Your ID *" id="sid" />
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div id = "valid1" style="color:red;"></div>
                                 </br>
                                 <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Your Password *" id="spwd" required data-validation-required-message="Please enter correct password.">
+                                    <input type="password" class="form-control" placeholder="Your Password *" id="spwd" />
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
@@ -206,7 +209,7 @@
                             <div class="clearfix"></div>
                             <div class="col-lg-12 text-center">
                                 <div id="success"></div>
-                                <button type="submit" class="btn btn-danger">Sign In</button>
+                                <button type="submit" id = "signInButton" onclick = "postSignInData()" class="btn btn-danger">Sign In</button>
                             </div>
                             </div>
                             </br>
@@ -217,7 +220,7 @@
                         </div>
                     </form>
                 </div>
-				
+				<!---
 				<div class="col-lg-12" id="signupdiv" style="display:none;">
                     <form name="signUp" id="signUp" novalidate action="bioDetails.html">
                         <div class="row">
@@ -261,6 +264,7 @@
                         </div>
                     </form>
                 </div>
+            -->
             </div>
         </div>
     </section>
