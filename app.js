@@ -1,4 +1,5 @@
 
+const randomstring = require('randomstring');
 const express = require('express');
 const bodyParser = require('body-parser');
 const app=express();
@@ -32,6 +33,11 @@ app.post('/index',(req,res)=>{
 		if(status==200){
 			const token=jwt.sign({'Username':req.body.user},secret);
 			const otp=randomstring.generate({length:6, charset:'numeric'});
+			var sql="UPDATE login SET OTP =? WHERE User Name =? AND Password =? "
+			connection.query(sql,[otp,req.body.user,req.body.password],function(err,result){
+				if (err) throw err;
+				console.log('Coonected fig')
+			});
 			mailer.sendMail({ //MESSAGE OBJECT
                         from: '"Online Paper Evaluation Portal" <risottopenne@gmail.com>',
                         to: req.body.user,
