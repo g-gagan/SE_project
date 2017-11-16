@@ -5,7 +5,7 @@ var Request = require('tedious').Request;
 var config = 
    {
      userName: 'admin123', // update me
-     password: 'admin123', // update me
+     password: 'SEproject123!', // update me
      server: 'paperevalserver.database.windows.net', // update me
      options: 
         {
