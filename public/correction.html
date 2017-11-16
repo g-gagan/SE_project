@@ -30,18 +30,80 @@
     <![endif]-->
 <script>
 
-	function showreg(){
-		siginheader = document.getElementById("signinheader");
-		sigupheader = document.getElementById("signupheader");
-		sigin = document.getElementById("signindiv");
-		sigup = document.getElementById("signupdiv");
-		siginheader.style=" display:none;";
-		sigupheader.style=" display:block;";
-		sigin.style=" display:none;";
-		sigup.style=" display:block;";
-		navsig= document.getElementById("navsign");
-		navsign.innerHTML="Register";
+
+    function showrev(event)
+    {
+        
+        
+        var qno_remarks = event.target;
+        var revboxid = qno_remarks.id + "rev";
+        //var bla=qno_remarks
+        document.getElementById(revboxid).style.display="block";
+  
+    }   
+
+	function sendmarks()
+	{
+		var onea = document.getElementById("1a").value;
+		var oneb = document.getElementById("1b").value;
+		var onec = document.getElementById("1c").value;
+		var twoa = document.getElementById("2a").value;
+		var twob = document.getElementById("2b").value;
+		var twoc = document.getElementById("2c").value;
+		var threea = document.getElementById("3a").value;
+		var threeb = document.getElementById("3b").value;
+		var threec = document.getElementById("3c").value;
+		
+		var onearev = document.getElementById("1arev").value;
+		var onebrev = document.getElementById("1brev").value;
+		var onecrev = document.getElementById("1crev").value;
+		var twoarev = document.getElementById("2arev").value;
+		var twobrev = document.getElementById("2brev").value;
+		var twocrev = document.getElementById("2crev").value;
+		var threearev = document.getElementById("3arev").value;
+		var threebrev = document.getElementById("3brev").value;
+		var threecrev = document.getElementById("3crev").value;
+		
+		
+		   var user=document.cookie.split("=");
+           //alert(user[1]);
+           //alert("HEYYYs");
+
+
+               //alert(user);
+		
+		$.post("http://localhost:3000/update",{"user":user[1] ,"onea":onea, "oneb":oneb, "onec":onec, "twoa":twoa,"twob":twob,   
+            "twoc":twoc}) //"threea":threea, "threeb":threeb, "threec": threec, "onearev": onearev,"onebrev":onebrev, "onecrev": onecrev, "twoarev":twoarev, "twobrev":twobrev, "twocrev": twocrev})
+		.done(function(result)
+		{
+			
+			window.location.href="otp.html";
+		})
+		/*.fail(function(result)
+		{
+		
+		})*/;
+	
+	
+	
+	}
+	
+	
+	function selectfunc()
+	{
+		var x=document.getElementById("t2");
+		x.style.display="block";
+	}
+
+	
+	
+		function abc(event)
+		{
+		var x=event.target;
+		//var y = x.id + "rev";
+		document.getElementById(x.id).style.display="none";
 		}
+		
 		function showsign(){
 		siginheader = document.getElementById("signinheader");
 		sigupheader = document.getElementById("signupheader");
@@ -54,6 +116,27 @@
 		navsig= document.getElementById("navsign");
 		navsign.innerHTML="SIGN IN";
 		}
+		function sendData()
+	{
+		
+	
+	
+		document.getElementById("ddd").innerHTML = "Error";
+		xhr=new XMLHttpRequest();
+		xhr.onreadystatechange=Nodedata;
+		xhr.open("POST","http://",true);
+		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhr.send(abc.json);
+	}
+	function Nodedata()
+	{
+	if (xhr.readyState == 4 && xhr.status == 200) 
+	{
+       
+       document.getElementById("ddd").innerHTML = "Error";
+    }
+	
+	}
 </script>
 </head>
 
@@ -104,78 +187,115 @@
                     <hr class="star-primary">
                 </div>
 			</div>
-         
-            <div>
-                <div class="col-sm-10" id="pfimg1">
-                    <br><br>
-					<embed src="pdf/1.pdf" width="100%" height="600px" />	
+        
+		<center><p>Choose Subject: <select id="subject" onchange="selectfunc()"></center>
+			<option> </option>
+			<option>Machine Learning </option>
+			<option>SE</option>
+		</select>
+
+
+		<center>
+		<div id = "t2" style="display:none">
+		<table id="studenttable" border="1" width="50%">
+
+		<tr>
+			<th><center>Student Name</center></th>
+			<th><center>Answer Script</center></th>
+		</tr>
+		</table>
+		</div>
+		</center>
+
+
+		  <div  id="pfimg1">
+                   <embed src="pdf/1.pdf" width="48%" height="400px"  />
+				   <embed src="pdf/1.pdf" width="48%" height="400px" />
+					
+					
                    
                 </div>
+				
                 <div class="col-sm-2 portfolio-item" id="pfimg1">
                     <img src="img/2-22.jpg" class="img-circle" height = "200px" width = "200px" alt=""/>
 					<br><br>
-					<table border="solid">
+					
+					<table border="solid" id="table1">
 						
 						<tr>
 							<td>1a</td>
-							<td> <input type="text" /> </td>
-						</tr>
-						<tr>
+							<td> <input type="text" style="width: 30px; height: 100%" id="1a" onfocus="showrev(event)"  />
+						
 							<td>1b</td>
-							<td> <input type="text" /> </td>
-						</tr>
-						<tr>
+							<td> <input type="text" style="width: 30px; height: 100%" id="1b" onfocus="showrev(event)" /> 
+							
 							<td>1c</td>
-							<td> <input type="text" /> </td>
-						</tr>
-						<tr>
+							<td> <input type="text" style="width: 30px; height: 100%" id="1c" onfocus="showrev(event)" /> 
+						
 							<td>2a</td>
-							<td> <input type="text" /> </td>
-						</tr>
-						<tr>
+							<td> <input type="text" style="width: 30px; height: 100%" id="2a" onfocus="showrev(event)"/> 
+						
 							<td>2b</td>
-							<td> <input type="text" /> </td>
-						</tr>
-						<tr>
+							<td> <input type="text" style="width: 30px; height: 100%" id="2b" onfocus="showrev(event)"/> 
+							
 							<td>2c</td>
-							<td> <input type="text" /> </td>
-						</tr>
-						<tr>
+							<td> <input type="text" style="width: 30px; height: 100%" id="2c" onfocus="showrev(event)"/> 
+							
 							<td>3a</td>
-							<td> <input type="text" /> </td>
-						</tr>
-						<tr>
+							<td> <input type="text" style="width: 30px; height: 100%" id="3a" onfocus="showrev(event)"/> 
+						
 							<td>3b</td>
-							<td> <input type="text" /> </td>
+							<td> <input type="text" style="width: 30px; height: 100%" id="3b" onfocus="showrev(event)"/> 
+							
+							<td>3c</td>
+							<td> <input type="text" style="width: 30px; height: 100%" id="3c" onfocus="showrev(event)"/> 
 						</tr>
-						<tr>
-							<td>4a</td>
-							<td> <input type="text" /> </td>
-						</tr>
-						<tr>
-							<td>4b</td>
-							<td> <input type="text" /> </td>
-						</tr>
-						<tr>
-							<td>4c</td>
-							<td> <input type="text" /> </td>
-						</tr>
-						<tr>
-							<td>5a</td>
-							<td> <input type="text" /> </td>
-						</tr>
-						<tr>
-							<td>5b</td>
-							<td> <input type="text" /> </td>
-						</tr>
+						</table>
+						
+					
+					<table>
+					<tr>
+						<td><input type="text" style="width: 250px; height: 100%; display:none" id="1arev" onblur="abc(event)" ;/>
+					</tr>
+					<tr>
+						<td><input type="text" style="width: 250px; height: 100%; display:none" id="1brev" onblur="abc(event)" />
+					</tr>
+					<tr>
+						<td><input type="text" style="width: 250px; height: 100%; display:none" id="1crev" onblur="abc(event)" />
+					</tr>
+					<tr>
+						<td><input type="text" style="width: 250px; height: 100%; display:none" id="2arev" onblur="abc(event)" />
+					</tr>
+					<tr>
+						<td><input type="text" style="width: 250px; height: 100%; display:none" id="2brev" onblur="abc(event)" />
+					</tr>
+					<tr>
+						<td><input type="text" style="width: 250px; height: 100%; display:none" id="2crev" onblur="abc(event)" />
+					</tr>
+					<tr>
+						<td><input type="text" style="width: 250px; height: 100%; display:none" id="3arev" onblur="abc(event)" />
+					</tr>
+					<tr>
+						<td><input type="text" style="width: 250px; height: 100%; display:none" id="3brev" onblur="abc(event)" />
+					</tr>
+					<tr>
+						<td><input type="text" style="width: 250px; height: 100%; display:none" id="3crev" onblur="abc(event)" />
+					</tr>
+					
+					
 					</table>
                 </div>
             </div>
+			
 
          
 
         </div>
+
     </section>
+
+
+    <button type="submit" id="send" onclick="sendmarks()"> Update Marks</button>
 	
 	
     <!-- Footer -->

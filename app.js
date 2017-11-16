@@ -1,4 +1,5 @@
-
+var http=require('http');
+const randomstring = require('randomstring');
 const express = require('express');
 const bodyParser = require('body-parser');
 const app=express();
@@ -31,7 +32,8 @@ app.post('/index',(req,res)=>{
 	database.checkLoginEntry(req.body.user,req.body.password,(status)=>{
 		if(status==200){
 			const token=jwt.sign({'Username':req.body.user},secret);
-			const otp=Math.floor((Math.random()*2345)+1).toString();
+			//const otp=Math.floor((Math.random()*2345)+1).toString();
+			const otp= randomstring.generate({length:6 , charset:'numeric'});
 			mailer.sendMail({ //MESSAGE OBJECT
                         from: '"Online Paper Evaluation Portal" <risottopenne@gmail.com>',
                         to: req.body.user,
@@ -48,7 +50,8 @@ app.post('/index',(req,res)=>{
                     		//if(status==200)
                     			//res.sendStatus(status);
 
-                    	console.log(status);
+                    	//console.log(status);
+                    	//const user= req.body.user;
                       	res.sendStatus(status);
                       	//console.log("w2");
                     });
@@ -61,9 +64,31 @@ app.post('/index',(req,res)=>{
 			res.sendStatus(404);
 		}	
 	}); 
-	console.log(req.body);
+	//console.log(req.body);
 	//res.sendStatus(200);
 });
+
+app.post('/otp',(req,res)=>{
+	//console.log("otp checking");
+	//console.log(req.body.otp);
+	database.checkOTPEntry(req.body.user,req.body.otp,(status,type)=>{
+		//console.log(status,type);
+		res.setHeader('Content-Type','application/json');
+		res.status(status).send({"Type":type});
+	});
+});
+
+
+app.post('/update',(req,res)=>{
+	//console.log("otp checking");
+	//console.log(req.body.otp);
+	database.updateMarks(req.body.user, req.body.onea, req.body.oneb, req.body.onec, req.body.twoa ,req.body.twob ,req.body.twoc, req.body.threea, req.body.threeb, req.body.threec,
+							req.body.onearev, req.body.onebrev, req.body.onecrev, req.body.twoarev ,req.body.twobrev ,req.body.twocrev, req.body.threearev, req.body.threebrev, req.body.threecrev,	(status)=>{
+		res.sendStatus(status);
+	});
+
+});
+
 
 
 
