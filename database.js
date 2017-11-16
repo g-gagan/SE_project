@@ -1,3 +1,60 @@
+var Connection = require('tedious').Connection;
+var Request = require('tedious').Request;
+
+// Create connection to database
+var config = 
+   {
+     userName: 'admin123', // update me
+     password: 'admin123', // update me
+     server: 'paperevalserver.database.windows.net', // update me
+     options: 
+        {
+           database: 'paperEvalDB' //update me
+           , encrypt: true
+        }
+   }
+var connection = new Connection(config);
+
+// Attempt to connect and execute queries if connection goes through
+connection.on('connect', function(err) 
+   {
+     if (err) 
+       {
+          console.log(err)
+       }
+    else
+       {
+           queryDatabase()
+       }
+   }
+ );
+
+function queryDatabase()
+{ 
+    console.log('Reading rows from the Table...');
+
+   // Read all rows from table
+    request = new Request(
+        "SELECT TOP 20 pc.Name as CategoryName, p.name as ProductName FROM [SalesLT].[ProductCategory] pc JOIN [SalesLT].[Product] p ON pc.productcategoryid = p.productcategoryid",
+             function(err, rowCount, rows) 
+            {
+                console.log(rowCount + ' row(s) returned');
+                process.exit();
+            }
+        );
+
+    request.on('row', function(columns) {
+        columns.forEach(function(column) {
+        console.log("%s\t%s", column.metadata.colName, column.value);
+     });
+         });
+ connection.execSql(request);
+}
+
+
+
+
+/*
 const mysql = require('mysql');
 
 var exports = {};
@@ -8,7 +65,9 @@ exports.createConnection = function() {
         host: 'paperevalserver.database.windows.net',
         user: 'admin123',
         password: 'admin123',
-        database: 'paperEvalDB'
+        database: 'paperEvalDB',
+        port: 1337,
+    	ssl: true
     });
     connection.connect((err) => {
         if (err) throw err;
@@ -26,3 +85,4 @@ exports.checkLoginEntry = function(UserName, password, completeWithStatus) {
         else return completeWithStatus(200);
     });
 };
+*/

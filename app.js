@@ -58,7 +58,7 @@ app.post('/index',(req,res)=>{
 //Node Server
 app.listen(port, function() {
     console.log('Listening on port ' + port);
-    database.createConnection();
+    //database.createConnection();
 });
 
 
