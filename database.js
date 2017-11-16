@@ -5,10 +5,10 @@ var connection = null;
 
 exports.createConnection = function() {
     connection = mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: '',
-        database: 'paperEval'
+        host: 'paperevalserver.database.windows.net',
+        user: 'admin123',
+        password: 'admin123',
+        database: 'paperEvalDB'
     });
     connection.connect((err) => {
         if (err) throw err;
