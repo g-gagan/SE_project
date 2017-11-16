@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+a\
 <head>
 
     <meta charset="utf-8">
@@ -58,11 +58,32 @@
 		{
 			document.getElementById("div1").innerHTML = " ";
 			var otp=document.getElementById("otp").value;
-			xhr=new XMLHttpRequest();
-			xhr.onreadystatechange = success;
-			xhr.open("POST", localhost:3000/ , true);
-			xhr.send({otp: otp});
-		}
+            alert(otp)
+			//xhr=new XMLHttpRequest();
+			//xhr.onreadystatechange = success;
+			//xhr.open("POST", "http://localhost:3000/otp" , true);
+			//xhr.send({"otp": otp});
+        
+
+            // var otp = document.getElementById("otp").value;
+
+        $.post("http://localhost:3000/otp1",{"otp":otp}) 
+            .done(function(result)
+            {
+                alert("OTP worked");
+                window.location.href = "correction.html";
+                
+            })
+
+            .fail(function(result)
+            {
+                document.getElementById("div1").innerHTML = "Incorrect OTP. Please Enter Again";
+            })
+
+            ;	
+
+        }
+
 			
 			
 		function success()
@@ -120,7 +141,7 @@
     <!-- Portfolio Grid Section -->
     <section id="portfolio">
 	<br><br><br>
-	<center>Eneter OTP            <input type="text" id="otp"></input>
+	<center>Enter OTP            <input type="text" id="otp"></input>
 	<br><br>
 	<input id="Button" type="button" value="Login" style="background-color:grey" onclick="checkotp();"/>
 	
