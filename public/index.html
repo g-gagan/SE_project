@@ -28,8 +28,8 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-<script>
-
+<script type = "text/javascript" src="js/jquery.cookies.2.2.0.min.js"></script>
+<script> 
 	function showreg()
 	{
 		siginheader = document.getElementById("signinheader");
@@ -43,7 +43,6 @@
 		navsig= document.getElementById("navsign");
 		navsign.innerHTML="Register";
 	}
-
 	function showsign()
 	{
 		siginheader = document.getElementById("signinheader");
@@ -57,20 +56,66 @@
 		navsig= document.getElementById("navsign");
 		navsign.innerHTML="SIGN IN";
 	}
-
 	function postSignInData()
 	{
+            //alert("Jyo");
 		var usr = document.getElementById("sid").value;
-		var pwd = document.getElementById("spwd").value;
-
+        var pwd = document.getElementById("spwd").value;
+        document.cookie = "username = " + usr;
+       
 		$.post("http://localhost:3000/index",{"user":usr,"password":pwd}, 
 			function(result)
 			{
-				window.location.href="otp.html";
+            	//alert("worked");
+                //if(result==200)
+            	 //  window.location.href = "otp.html";
+                 document.getElementById("checkotp").disabled= false;
+                  document.getElementById("otp").disabled= false;
         	}
-			);
-	}
-
+		);
+    }
+    function checkotp()
+        {
+            var usr = document.getElementById("sid").value;
+            document.getElementById("div1").innerHTML = " ";
+            var otp=document.getElementById("otp").value;
+            //alert(otp);
+            //xhr=new XMLHttpRequest();
+            //xhr.onreadystatechange = success;
+            //xhr.open("POST", "http://localhost:3000/otp" , true);
+            //xhr.send({"otp": otp});
+         
+            //var otp = document.getElementById("otp").value;
+       $.post("http://localhost:3000/otp",{"user":usr,"otp":otp}) 
+            .success(function(result)
+            {
+                //alert("HEYYYYYY")
+                //console.log("Result" + result);
+                //alert("result");
+                //alert(result);
+                //alert("OTP worked");
+                alert("RESULT:" + result.Type);
+                //const myObj = JSON.parse(result);
+                //alert(myObj.Type);
+                if(result.Type==1)
+                    window.location.href = "correction.html";
+                else
+                    window.location.href="student.html";
+                
+            })
+            .fail(function(result)
+            {
+                document.getElementById("div1").innerHTML = "Incorrect OTP. Please Enter Again";
+            });   
+       /*     $.ajax({url:'http://localhost:3000/otp', type:'post', data:{"user":usr,"otp":otp}, headers:{'Content-Type':'application/json'}, 
+            success: function(data){
+                                   alert(typeof(result));
+                                    const myObj = JSON.parse(result);
+                                    alert(myObj.Type);
+                                    window.location.href = "correction.html";
+                                    }
+        });*/
+    }
 </script>
 </head>
 
@@ -186,7 +231,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-12" id="signindiv">
-                    <form name="signIn" id="signIn" novalidate>
+                    <!-- <form name="signIn" id="signIn" novalidate> -->
                         <div class="row">
 							<!-- <div class = "col-md-4"></div> -->
                             <div class="center-block" style="width:500px;">
@@ -201,21 +246,24 @@
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
+                             <input type="text" id="otp" disabled></input>
 							<!--<div class = "col-md-4"></div>-->
                             <div class="clearfix"></div>
                             <div class="col-lg-12 text-center">
                                 <div id="success"></div>
 
-                                <button type="submit" id = "signInButton" onclick = "postSignInData()" class="btn btn-danger">Sign In</button>
+                                <button type="submit" id = "signInButton" onclick = "postSignInData()" class="btn btn-danger">Generate OTP</button>
                             </div>
                             </div>
                             </br>
+                            <button type="submit" id="checkotp" onclick="checkotp()" disabled> Sign In</button>
 							<div class="text-center" id="linkforreg">
 								<p> Not yet a member?</p>
                                 <a href="javascript:;" onclick = "showreg();" style="color:black;">Sign Up!</a>
 							</div>
+                            <div id="div1"></div>
                         </div>
-                    </form>
+                    <!-- </form> -->
                 </div>
 				<!---
 				<div class="col-lg-12" id="signupdiv" style="display:none;">
