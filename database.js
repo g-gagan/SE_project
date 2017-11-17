@@ -9,7 +9,7 @@ var config =
      server: 'okomiko.database.windows.net', // update me
      options: 
         {
-           database: 'somedb' //update me
+           database: 'paperEval' //update me
            , encrypt: true
         }
    }
