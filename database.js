@@ -1,4 +1,4 @@
-var Connection = require('tedious').Connection;
+/*var Connection = require('tedious').Connection;
 var Request = require('tedious').Request;
 var TYPES = require('tedious').TYPES;
 
@@ -39,7 +39,7 @@ function queryDatabase()
     console.log('Reading rows from the Table...');
 
    // Read all rows from table
-/*    request = new Request(
+    request = new Request(
         // "SELECT TOP 20 pc.Name as CategoryName, p.name as ProductName FROM [SalesLT].[ProductCategory] pc JOIN [SalesLT].[Product] p ON pc.productcategoryid = p.productcategoryid",
         "SELECT * FROM login WHERE UserName=@name AND Password=@pwd",
              function(err, rowCount, rows) 
@@ -47,7 +47,7 @@ function queryDatabase()
                 console.log(rowCount + ' row(s) returned');
                 process.exit();
             }
-        );*/
+        );
 
   // var sql = 'SELECT * FROM login WHERE UserName=@name AND Password=@pwd';
   var sql = 'SELECT * FROM login WHERE UserName=@name AND Password=@pwd';
@@ -65,5 +65,4 @@ function queryDatabase()
         console.log("%s\t%s", column.metadata.colName, column.value);
      });
          });
- //connection.execSql(request);
-}
+}*/
