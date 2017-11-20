@@ -5,7 +5,7 @@ const app=express();
 const expressJWT = require('express-jwt');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
-const port = process.env.PORT || 1337;
+const port = process.env.PORT || 80;
 const secret='risotto'; //token used
 const database = require('./database.js');
 const mailer = require('./mailer.js');
@@ -86,6 +86,10 @@ app.post('/index',(req,res)=>{
 		                        //html: 'To find out later-ask gagan'
 		                        html: 'Your OTP is' + otp.toString()
 		                    }, function(data) {
+
+		                    	//var query2 = "UPDATE login SET OTP"
+
+
 		                      res.sendStatus(200);
 		                    });			
 					res.status(200).send(token);

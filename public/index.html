@@ -63,7 +63,7 @@
         var pwd = document.getElementById("spwd").value;
         document.cookie = "username = " + usr;
        
-		$.post("http://localhost:1337/index",{"user":usr,"password":pwd}, 
+		$.post("http://localhost:80/index",{"user":usr,"password":pwd}, 
 			function(result)
 			{
             	//alert("worked");
