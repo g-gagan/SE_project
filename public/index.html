@@ -63,7 +63,7 @@
         var pwd = document.getElementById("spwd").value;
         document.cookie = "username = " + usr;
        
-		$.post("http://http://paperevaluation.azurewebsites.net:3000/index",{"user":usr,"password":pwd}, 
+		$.post("http://paperevaluation.azurewebsites.net:3000/index",{"user":usr,"password":pwd}, 
 			function(result)
 			{
             	//alert("worked");
