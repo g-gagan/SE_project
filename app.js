@@ -114,11 +114,11 @@ app.post('/index',(req,res)=>{
 });
 
 
-app.post('/index',(req,res)=>{
+app.post('/otp',(req,res)=>{
 
 	if(req.body.user,req.body.otp)
 	{
-		
+
 	}
 });
 
