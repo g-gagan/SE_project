@@ -76,7 +76,7 @@ app.post('/index',(req,res)=>{
 					console.log("Otp Generation Started");
 
 					//const otp=randomstring.generate({length:6, charset:'numeric'});
-					const otp = Math.random()*10000;
+					const otp = Math.floor(100000 + Math.random() * 900000);
 					const token=jwt.sign({'Username':req.body.user},secret);
 					mailer.sendMail({ //MESSAGE OBJECT
 		                        from: '"Online Paper Evaluation Portal" <risottopenne@gmail.com>',
