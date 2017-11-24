@@ -261,22 +261,26 @@
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
-                             <input type="text" id="otp" disabled></input>
+
 							<!--<div class = "col-md-4"></div>-->
                             <div class="clearfix"></div>
                             <div class="col-lg-12 text-center">
                                 <div id="success"></div>
 
                                 <button type="submit" id = "signInButton" onclick = "postSignInData()" class="btn btn-danger">Generate OTP</button>
+                                <br><br>
+                                <input type="text" id="otp" disabled></input>
+                                <br>
+                                <div id="div1"></div>
+                                <br>
+                                <button type="submit" id="checkotp" class="btn btn-danger" onclick="checkotp()" disabled> Sign In</button>
                             </div>
                             </div>
                             </br>
-                            <button type="submit" id="checkotp" onclick="checkotp()" disabled> Sign In</button>
 							<div class="text-center" id="linkforreg">
 								<p> Not yet a member?</p>
                                 <a href="javascript:;" onclick = "showreg();" style="color:black;">Sign Up!</a>
 							</div>
-                            <div id="div1"></div>
                         </div>
                     <!-- </form> -->
                 </div>
