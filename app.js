@@ -86,14 +86,26 @@ app.post('/update',(req,res)=>{
 							req.body.onearev, req.body.onebrev, req.body.onecrev, req.body.twoarev ,req.body.twobrev ,req.body.twocrev, req.body.threearev, req.body.threebrev, req.body.threecrev,	(status)=>{
 		res.sendStatus(status);
 	});
+  });
 
 app.post('/view',(req,res)=>{
-		database.view(req.body.stu_user,req.body.course,(status,onea,oneb,onec,twoa,twob,twoc,thea,theb,thec,onearev,onearev,onearev,onearev,twoarev,twobrev,twocrev,threearev,threebrev,threecrev) => {
-			res.status(status).send({"1a":onea},{"2a":twoa},{"2b":twob},{"2c":twoc},{"3a":thea},{"3b":theb},{"3c":thec},{"R1":onearev},{"R2":onebrev},{"R3":onecrev},{"R4":twoarev},{"R5":twobrev},{"R6":twocrev},{"R7":threearev},{"R8":threebrev},{"R9":threecrev});
+		database.view(req.body.stu_user,req.body.course,(status,onea,oneb,onec,twoa,twob,twoc,thea,theb,thec,onearev,onebrev,onecrev,twoarev,twobrev,twocrev,threearev,threebrev,threecrev) => {
+			res.status(status).send({"1a":onea,"2a":twoa,"2b":twob,"2c":twoc,"3a":thea,"3b":theb,"3c":thec,"R1":onearev,"R2":onebrev,"R3":onecrev,"R4":twoarev,"R5":twobrev,"R6":twocrev,"R7":threearev,"R8":threebrev,"R9":threecrev});
 
 		});
 
 	});
+
+
+
+app.post('/getStudent',(req,res)=>{
+		database.getStud(req.body.user,req.body.course,(status,results) => {
+			res.status(status).send(results);
+
+		});
+
+	});
+
 
 //Node Server
 app.listen(port, function() {

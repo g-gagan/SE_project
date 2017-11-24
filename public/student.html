@@ -38,7 +38,7 @@
 	}
 
 	
-	function showrev(event){
+	/*function showrev(event){
 		console.log("hi");
 		var qno_remarks = event.target;
 		var revboxid = qno_remarks.id + "rev";
@@ -52,7 +52,30 @@
 		var x=event.target;
 		//var y = x.id + "rev";
 		document.getElementById(x.id).style.display="none";
+		}*/
+
+		function getmarks()
+		{
+			var x=document.getElementById("subject").value;
+			var user=document.cookie.split("=");
+			$.post("http://localhost:3000/view",{"stu_user":user[1] ,"course":x})
+			.done(function(result)
+			{
+				document.getElementById("1a").value=result.1a;
+				document.getElementById("1b").value=result.1b;
+				document.getElementById("1c").value=result.1c;
+				document.getElementById("2a").value=result.2a;
+				document.getElementById("2b").value=result.2b;
+				document.getElementById("2c").value=result.2c;
+				document.getElementById("3a").value=result.3a;
+				document.getElementById("3b").value=result.3b;
+				document.getElementById("3c").value=result.3c;
+
+			
+			});
+	
 		}
+
 		
 		function showsign(){
 		siginheader = document.getElementById("signinheader");
@@ -145,6 +168,9 @@
 			<option>Machine Learning </option>
 			<option>SE</option>
 	</select>
+
+	<input type="button" id="getmarks" onclick="getMarks()" value="Get Marks"></input>
+
 	<div  id="pfimg1">
         <embed  width="48%" height="400px" id="answerscript"  />
 		<embed  width="48%" height="400px" id="key" />
@@ -153,7 +179,7 @@
                
 		<br><br>
 			
-		<table border="solid" id="table1" >
+		<table id="table1" style="display:none" >
 			<tr>
 				<th>QNo.</th>
 				<th>Marks</th>

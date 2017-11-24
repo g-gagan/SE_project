@@ -66,26 +66,15 @@
 		
 		
 		   var user=document.cookie.split("=");
-           //alert(user[1]);
-           //alert("HEYYYs");
 
-
-               //alert(user);
-		
 		$.post("http://localhost:3000/update",{"user":user[1] ,"onea":onea, "oneb":oneb, "onec":onec, "twoa":twoa,"twob":twob,   
-            "twoc":twoc}) //"threea":threea, "threeb":threeb, "threec": threec, "onearev": onearev,"onebrev":onebrev, "onecrev": onecrev, "twoarev":twoarev, "twobrev":twobrev, "twocrev": twocrev})
+            "twoc":twoc,"threea":threea,"threeb":threeb,"threea":threec,"onearev":onearev,"onebrev":onebrev,"onecrev":onecrev,"twoarev":twoarev,"twobrev":twobrev,"twocrev":twocrev,"threearev":threearev,"threebrev":threebrev,"threecrev":threecrev}) //"threea":threea, "threeb":threeb, "threec": threec, "onearev": onearev,"onebrev":onebrev, "onecrev": onecrev, "twoarev":twoarev, "twobrev":twobrev, "twocrev": twocrev})
 		.done(function(result)
 		{
 			
-			window.location.href="otp.html";
+			alert("KUSHALLL");
 		})
-		/*.fail(function(result)
-		{
-		
-		})*/;
-	
-	
-	
+
 	}
 	
 	
@@ -97,8 +86,8 @@
 
 	
 	
-		function abc(event)
-		{
+	function abc(event)
+	{
 		var x=event.target;
 		//var y = x.id + "rev";
 		document.getElementById(x.id).style.display="none";
@@ -115,12 +104,9 @@
 		sigup.style=" display:none;";
 		navsig= document.getElementById("navsign");
 		navsign.innerHTML="SIGN IN";
-		}
+	}
 		function sendData()
 	{
-		
-	
-	
 		document.getElementById("ddd").innerHTML = "Error";
 		xhr=new XMLHttpRequest();
 		xhr.onreadystatechange=Nodedata;
@@ -130,13 +116,49 @@
 	}
 	function Nodedata()
 	{
-	if (xhr.readyState == 4 && xhr.status == 200) 
-	{
-       
-       document.getElementById("ddd").innerHTML = "Error";
-    }
+    	if (xhr.readyState == 4 && xhr.status == 200) 
+    	{
+           
+           document.getElementById("ddd").innerHTML = "Error";
+        }
 	
 	}
+
+    function getlist()
+    {
+    var table=document.getElementById("studenttable");
+    
+   // var row = table.insertRow(1);
+   // var cell1 = row.insertCell(0);
+    //var cell2 = row.insertCell(1);
+    //cell1.innerHTML = "NEW CELL1";
+    //cell2.innerHTML = "NEW CELL2";
+
+
+    var user=document.cookie.split("=");
+    var course = document.getElementById("subject").value;
+    $.post("http://localhost:3000/getStudent",{"user":user[1] ,"course":course}) 
+        .done(function(result)
+        {
+            
+            //var count=result.length();
+
+            /*for (i = 0; i < results.length; i++) 
+            { 
+                var row = table.insertRow(i+1);
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                cell1.innerHTML = "NEW CELL1";
+                cell2.innerHTML = "NEW CELL2";
+            }
+  
+        */
+        alert("Mayank");
+
+
+    })
+}
+
 </script>
 </head>
 
@@ -193,10 +215,11 @@
 			<option>Machine Learning </option>
 			<option>SE</option>
 		</select>
+        <input type="button" value="Student List" onclick="getlist()"></input>
 
 
 		<center>
-		<div id = "t2" style="display:none">
+		<div id = "t2" style="display:block">
 		<table id="studenttable" border="1" width="50%">
 
 		<tr>
@@ -207,17 +230,13 @@
 		</div>
 		</center>
 
-
-		  <div  id="pfimg1">
-                   <embed src="pdf/1.pdf" width="48%" height="400px"  />
-				   <embed src="pdf/1.pdf" width="48%" height="400px" />
-					
-					
-                   
-                </div>
+        <br><br><br><br>
+	   <div  id="pfimg1">
+                   <embed src="pdf/1.pdf" width="48%" height="400px" id="answersheet"  />
+				   <embed src="pdf/1.pdf" width="48%" height="400px" id="keypaper"/>
+		</div>
 				
-                <div class="col-sm-2 portfolio-item" id="pfimg1">
-                    <img src="img/2-22.jpg" class="img-circle" height = "200px" width = "200px" alt=""/>
+               
 					<br><br>
 					
 					<table border="solid" id="table1">
