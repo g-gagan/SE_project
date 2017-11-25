@@ -5,10 +5,12 @@ var connection = null;
 
 exports.createConnection = function() {
     connection = mysql.createConnection({
+    
         host: 'localhost',
         user: 'root',
         password: '',
         database: 'exam'
+    
     });
     connection.connect((err) => {
         if (err) throw err;
@@ -60,8 +62,7 @@ exports.checkLoginEntry = function(UserName, password, completeWithStatus) {
     });
     }
 
-    exports.updateMarks= function(user,oa,ob,oc,toa,tob,toc,tha,thb,thc,oar,obr,ocr,toar,tobr,tocr,thar,thbr,thcr,completeWithStatus)
-    {
+    exports.updateMarks= function(user,oa,ob,oc,toa,tob,toc,tha,thb,thc,oar,obr,ocr,toar,tobr,tocr,thar,thbr,thcr,completeWithStatus){
        connection.query('UPDATE `student_details` SET `1a`= ? , `1b`= ? , `1c`= ?, `2a`= ? , `2b`= ? , `2c` = ? , `3a`= ? , `3b`= ? , `3c` = ?, `R1` = ?, `R2` = ?,`R3` = ?,`R4` = ?,`R5` = ?,`R6` = ?,`R7` = ?,`R8` = ?,`R9` = ?   WHERE `UserName` = ?' , [oa,ob,oc,toa,tob,toc,tha,thb,thc,oar,obr,ocr,toar,tobr,tocr,thar,thbr,thcr,user] ,(err,results,fields) => {
              //console.log("w1");
              if (err) {
@@ -76,8 +77,7 @@ exports.checkLoginEntry = function(UserName, password, completeWithStatus) {
     }); 
    }
     
-   exports.view = function(user,course)
-   {
+   exports.view = function(user,course){
         //connection.query('SELECT `1a`,`1b`,`1c`,`2a`,`2b`,`2c`,`3a`,`3b`,`3c`,`R1`,`R2`,`R3`,`R4`,`R5`,`R6`,`R7`,`R8`,`R9` FROM `student_details` WHERE `USN`=123 AND Course = ?', [course], (err,results,fields) =>
         connection.query('SELECT `USN` from `student_name` where `UserName` = ?', [user] ,(err, results1, fields) => {
         
@@ -97,14 +97,11 @@ exports.checkLoginEntry = function(UserName, password, completeWithStatus) {
 
 
         });
-//            else return completeWithStatus(404);
     
    }
 
-
-   exports.getStud= function(user,course,completeWithStatus)
-   {
-    connection.query('SELECT `USN` ,`LINK` FROM `student_details` WHERE `UserName` = ? AND `Course` = ?', [user,course], (err,results,fields) => {
+   exports.getStud= function(user , course , completeWithStatus){
+    connection.query('SELECT `USN` ,`LINK` FROM `student_details` WHERE `UserName` = ? AND `Course` = ?', [user,course], (err, results , fields) => {
         if(err) console.log(err);
         //console.log("print");
         console.log(results);
@@ -113,12 +110,10 @@ exports.checkLoginEntry = function(UserName, password, completeWithStatus) {
     });
    }
 
-    exports.getTotal = function(user,course,completeWithStatus){
-        connection.query('SELECT `USN`,`total` FROM `student_details` WHERE `UserName` = ? AND `Course` = ?', [user,course], (err,results,fields) => {
+    exports.getTotal = function(user , course , completeWithStatus){
+        connection.query('SELECT `USN` , `total` FROM `student_details` WHERE `UserName` = ? AND `Course` = ?', [user,course], (err , results , fields) => {
         if(err) console.log(err);
         console.log(results);
-        alert(results);
         return completeWithStatus(200,results);
     });
    };
-//('SELECT `USN` from `student_name` where `UserName` = ?', [user] )
