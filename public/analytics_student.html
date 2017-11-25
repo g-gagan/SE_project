@@ -86,13 +86,13 @@ function updateManufacturer(val) {
 			data.addColumn('string', 'Topping');
 			data.addColumn('number', 'Slices');
 			data.addRows([
-			  ['S', 3],
+/*			  ['S', 3],
 			  ['A', 1],
 			  ['B', 1],
 			  ['C', 1],
 			  ['E', 2],
 			  ['F', 1]
-			  
+*/			  
 			]);
 	
 			// Set chart options
@@ -113,12 +113,22 @@ function updateManufacturer(val) {
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawVisualization);
+    
+     
+
 
       function drawVisualization() {
-        // Some raw data (not necessarily accurate)
+
+    $.post("http://localhost:3000/analytics_student.html",{"stu_user":user[1] ,"course":x})
+			.done(function(result)
+			{	console.log(result);
+				var data = google.visualization.arrayToDataTable([results.USN,results.total]);
+			
+			});
+    /*
         var data = google.visualization.arrayToDataTable([
-         ['Subjects',    'Software Engineering'],
-         ['01FB14ECS01',          95],
+       ['Subjects',    'Software Engineering'],
+       ['01FB14ECS01',          95],
          ['01FB14ECS02',          82],
          ['01FB14ECS03',          76],
          ['01FB14ECS04',          83],
@@ -167,9 +177,9 @@ function updateManufacturer(val) {
          ['01FB14ECS02',          82],
          ['01FB14ECS03',          76],
          ['01FB14ECS04',          83]
-         
+        
       ]);
-
+*/
     var options1 = {
       title : 'Students Scores',
       vAxis: {title: 'Percentage'},

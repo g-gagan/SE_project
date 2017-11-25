@@ -25,6 +25,7 @@ exports.checkLoginEntry = function(UserName, password, completeWithStatus) {
         if (results.length == 0) return completeWithStatus(404);
         else return completeWithStatus(200);
     });
+}
 
     exports.addLogin = function(UserName,otp, completeWithStatus) {
         //connection.query('UPDATE `Login` SET ? WHERE `User Name`=?' , {OTP: otp},[UserName.toUpperCase()],(err,results,fields) => {
@@ -96,7 +97,7 @@ exports.checkLoginEntry = function(UserName, password, completeWithStatus) {
 
 
         });
-            else return completeWithStatus(404);
+//            else return completeWithStatus(404);
     
    }
 
@@ -111,5 +112,13 @@ exports.checkLoginEntry = function(UserName, password, completeWithStatus) {
 
     });
    }
-};
+
+    exports.getTotal = function(user,course,completeWithStatus){
+        connection.query('SELECT `USN`,`total` FROM `student_details` WHERE `UserName` = ? AND `Course` = ?', [user,course], (err,results,fields) => {
+        if(err) console.log(err);
+        console.log(results);
+        alert(results);
+        return completeWithStatus(200,results);
+    });
+   };
 //('SELECT `USN` from `student_name` where `UserName` = ?', [user] )
