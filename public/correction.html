@@ -127,37 +127,88 @@
     function getlist()
     {
     var table=document.getElementById("studenttable");
-    
-   // var row = table.insertRow(1);
-   // var cell1 = row.insertCell(0);
-    //var cell2 = row.insertCell(1);
-    //cell1.innerHTML = "NEW CELL1";
-    //cell2.innerHTML = "NEW CELL2";
-
-
     var user=document.cookie.split("=");
     var course = document.getElementById("subject").value;
     $.post("http://localhost:3000/getStudent",{"user":user[1] ,"course":course}) 
         .done(function(result)
         {
-            
-            //var count=result.length();
 
-            /*for (i = 0; i < results.length; i++) 
+            //for(i=0;i<result.length;i++)
+            //alert(result[i].USN);
+            //var count=result.length();
+            //document.cookie = "result = " + result;
+            for (i = 0; i < result.length; i++) 
             { 
+                var button=document.createElement("button");
+                button.innerHTML="Show Paper";
+                button.id=i;
+                //button.onclick=getpaper();
+                //alert(button.id);
                 var row = table.insertRow(i+1);
+                var x=row.id=i+"abc";
+                //alert(x);
                 var cell1 = row.insertCell(0);
                 var cell2 = row.insertCell(1);
-                cell1.innerHTML = "NEW CELL1";
-                cell2.innerHTML = "NEW CELL2";
+                var cell3 = row.insertCell(2);
+                cell1.innerHTML = result[i].USN;
+                cell2.innerHTML = result[i].LINK;
+                cell3.appendChild(button);
+                button.onclick=getpaper;
             }
-  
-        */
-        alert("Mayank");
+
+        })
+
+    }
+    function getpaper(event)
+    {
+        //alert("called");
+        //var result=document.cookie.split("=");
+        //alert(result);
+        var qno_remarks = event.target;
+        var revboxid = qno_remarks.id;
+        var table=document.getElementById(revboxid + "abc");
+
+        var div_pdf = document.getElementById("pdf");
+        
+        while (div_pdf.firstChild) 
+        {
+            div_pdf.removeChild(div_pdf.firstChild);
+        }
+
+        var link=table.childNodes[1].innerHTML;
+        //document.getElementById("pdf").style.display="block";
+        //document.getElementById("pdf1").style.display="block";
+        //source="C:/Users/Jyotsna/Desktop/CSE/Sem 7/SE/SE_project/public/pdf";
+        //var source="C:/Users/Jyotsna/Desktop/CSE/Sem 7/SE/SE_project/public/pdf";
+        var source_ans_script = link;
+
+        var source_ans_key = "pdf/1.pdf";
 
 
-    })
-}
+        var ans_script = document.createElement("embed");
+        ans_script.src = source_ans_script; 
+        ans_script.style.width = "48%";
+        ans_script.style.height = "400px";
+        div_pdf.appendChild(ans_script);
+
+        alert(ans_script.src);
+        
+        var ans_key = document.createElement("embed");
+        ans_key.src = source_ans_key; 
+        ans_key.style.width = "48%";
+        ans_key.style.height = "400px";
+        div_pdf.appendChild(ans_key);
+
+        alert(ans_key.src);
+
+
+        //document.getElementById("pdf2").src="pdf/1.pdf";
+        //pdf/1.pdf
+        //alert(revboxid);
+        //var x=result[revboxid].LINK;
+        //alert(x);
+    }
+
 
 </script>
 </head>
@@ -231,11 +282,13 @@
 		</center>
 
         <br><br><br><br>
-	   <div  id="pfimg1">
-                   <embed src="pdf/1.pdf" width="48%" height="400px" id="answersheet"  />
-				   <embed src="pdf/1.pdf" width="48%" height="400px" id="keypaper"/>
+	   <div  id="pdf" >
+                   <!--
+                   <embed src= "" id="pdf1" width="48%" height="400px"   />
+				   <embed src = "" id="pdf2" width="48%" height="400px" />
+                   -->
 		</div>
-				
+		
                
 					<br><br>
 					

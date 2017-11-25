@@ -89,14 +89,14 @@ exports.checkLoginEntry = function(UserName, password, completeWithStatus) {
                 //console.log(results);
                // else return completeWithStatus(200,results[0].1a,results[0].1b,results[0].1b,results[0].1c,results[0].2a,results[0].2b,results[0].2c,results[0].3a,results[0].3b,results[0].3c,results[0].oar,results[0].obr,results[0].ocr,results[0].toar,results[0].tobr,results[0].tocr,results[0].thar,results[0].thbr,results[0].thcr);
                 //else return completeWithStatus(200,results[0].oar); 
-             return completeWithStatus(899);
+             return completeWithStatus(200);
 
                 });
             }
 
 
         });
-            //else return completeWithStatus(404);
+            else return completeWithStatus(404);
     
    }
 
@@ -105,7 +105,7 @@ exports.checkLoginEntry = function(UserName, password, completeWithStatus) {
    {
     connection.query('SELECT `USN` ,`LINK` FROM `student_details` WHERE `UserName` = ? AND `Course` = ?', [user,course], (err,results,fields) => {
         if(err) console.log(err);
-        console.log("print");
+        //console.log("print");
         console.log(results);
         return completeWithStatus(200,results);
 
