@@ -106,6 +106,13 @@ app.post('/getStudent',(req,res)=>{
 
 	});
 
+app.post('/analyticsStud',(req,res) =>{
+		database.getTotal(req.body.course,(status,results) => {
+			res.status(status).send(results);
+		});
+
+	});
+
 
 //Node Server
 app.listen(port, function() {

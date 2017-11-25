@@ -101,7 +101,7 @@ exports.checkLoginEntry = function(UserName, password, completeWithStatus) {
    }
 
    exports.getStud= function(user , course , completeWithStatus){
-    connection.query('SELECT `USN` ,`LINK` FROM `student_details` WHERE `UserName` = ? AND `Course` = ?', [user,course], (err, results , fields) => {
+        connection.query('SELECT `USN` ,`LINK` FROM `student_details` WHERE `UserName` = ? AND `Course` = ?', [user,course], (err, results , fields) => {
         if(err) console.log(err);
         //console.log("print");
         console.log(results);
@@ -109,9 +109,10 @@ exports.checkLoginEntry = function(UserName, password, completeWithStatus) {
 
     });
    }
-
-    exports.getTotal = function(user , course , completeWithStatus){
-        connection.query('SELECT `USN` , `total` FROM `student_details` WHERE `UserName` = ? AND `Course` = ?', [user,course], (err , results , fields) => {
+    /* Students Analytics */
+    exports.getTotal = function(course , completeWithStatus){
+        console.log("hello");
+        connection.query('SELECT `USN` , `total` FROM `student_details` WHERE `Course` = ?', [course], (err , results , fields) => {
         if(err) console.log(err);
         console.log(results);
         return completeWithStatus(200,results);
