@@ -32,33 +32,6 @@
 	-->
 <script>
 
-	function showreg()
-	{
-		siginheader = document.getElementById("signinheader");
-		sigupheader = document.getElementById("signupheader");
-		sigin = document.getElementById("signindiv");
-		sigup = document.getElementById("signupdiv");
-		siginheader.style=" display:none;";
-		sigupheader.style=" display:block;";
-		sigin.style=" display:none;";
-		sigup.style=" display:block;";
-		navsig= document.getElementById("navsign");
-		navsign.innerHTML="Register";
-	}
-
-	function showsign()
-	{
-		siginheader = document.getElementById("signinheader");
-		sigupheader = document.getElementById("signupheader");
-		sigin = document.getElementById("signindiv");
-		sigup = document.getElementById("signupdiv");
-		siginheader.style=" display:block;";
-		sigupheader.style=" display:none;";
-		sigin.style=" display:block;";
-		sigup.style=" display:none;";
-		navsig= document.getElementById("navsign");
-		navsign.innerHTML="SIGN IN";
-	}
 </script>
 
 </style>
@@ -66,7 +39,9 @@
 	<!-- pie chart function  Start-->
 	  <!--Load the AJAX API-->
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 		<script type="text/javascript">
+		
 	
 		  // Load the Visualization API and the corechart package.
 		  google.charts.load('current', {'packages':['corechart']});
@@ -115,12 +90,52 @@
       function drawVisualization() {
         // Some raw data (not necessarily accurate)
         var data = google.visualization.arrayToDataTable([
-         ['Subjects',    'Software Engineering', 'OOMD',   'Machine Learning', 'Big Data', 'Data Structure', 'Average'],
-         ['01FB14ECS01',          95,               88,         93,             89,            86,            90.2],
-         ['01FB14ECS02',          82,               78,         89,             87,            89,             83],
-         ['01FB14ECS03',          76,               72,         78,             79,            78,              85],
-         ['01FB14ECS04',          83,               79,         75,             88,            89,              86],
-         ['01FB14ECS05',          78,               76,         88,             89,            91,               89]
+         ['Subjects',    'Software Engineering'],
+         ['01FB14ECS01',          95],
+         ['01FB14ECS02',          82],
+         ['01FB14ECS03',          76],
+         ['01FB14ECS04',          83],
+         ['01FB14ECS05',          78],
+		 ['01FB14ECS01',          95],
+         ['01FB14ECS02',          82],
+         ['01FB14ECS03',          76],
+         ['01FB14ECS04',          83],
+         ['01FB14ECS05',          78],
+		 ['01FB14ECS01',          95],
+         ['01FB14ECS02',          82],
+         ['01FB14ECS03',          76],
+         ['01FB14ECS04',          83],
+         ['01FB14ECS05',          78],
+		 ['01FB14ECS01',          95],
+         ['01FB14ECS02',          82],
+         ['01FB14ECS03',          76],
+         ['01FB14ECS04',          83],
+         ['01FB14ECS05',          78],
+		 ['01FB14ECS01',          95],
+         ['01FB14ECS02',          82],
+         ['01FB14ECS03',          76],
+         ['01FB14ECS04',          83],
+         ['01FB14ECS05',          78],
+		 ['01FB14ECS01',          95],
+         ['01FB14ECS02',          82],
+         ['01FB14ECS03',          76],
+         ['01FB14ECS04',          83],
+         ['01FB14ECS05',          78],
+		 ['01FB14ECS01',          95],
+         ['01FB14ECS02',          82],
+         ['01FB14ECS03',          76],
+         ['01FB14ECS04',          83],
+         ['01FB14ECS05',          78],
+		 ['01FB14ECS01',          95],
+         ['01FB14ECS02',          82],
+         ['01FB14ECS03',          76],
+         ['01FB14ECS04',          83],
+         ['01FB14ECS05',          78],
+		 ['01FB14ECS01',          95],
+         ['01FB14ECS02',          82],
+         ['01FB14ECS03',          76],
+         ['01FB14ECS04',          83],
+         ['01FB14ECS05',          78]
       ]);
 
     var options1 = {
@@ -136,6 +151,35 @@
   }
     </script>
 <!-- Combo chart function End -->
+
+<script type="text/javascript">
+function updateManufacturer(val) {
+	//alert();
+	if(val.value=="1")
+		asd.innerHTML='<option value="A">A</option><option value="B">B</option><option value="C">C</option>';
+	else if(val.value=="2")
+		asd.innerHTML='<option value="A">A</option><option value="B">B</option><option value="C">C</option>';
+		else if(val.value=="3")
+			asd.innerHTML='<option value="A">A</option><option value="B">B</option><option value="C">C</option>';
+			else if (val.value=="4")
+				asd.innerHTML='<option value="A">A</option><option value="B">B</option><option value="C">C</option>';
+				else if (val.value=="5")
+					asd.innerHTML='<option value="A">A</option><option value="B">B</option><option value="C">C</option>';
+					else if (val.value== "6")
+						asd.innerHTML='<option value="A">A</option><option value="B">B</option><option value="C">C</option>';	
+						else if (val.value== "7")
+							asd.innerHTML='<option value="A">A</option><option value="B">B</option><option value="C">C</option>';
+							else if (val.value== "8")
+								asd.innerHTML='<option value="A">A</option><option value="B">B</option><option value="C">C</option>';		
+
+						
+}
+
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+
 	
 </head>
 
@@ -171,16 +215,52 @@
         <!-- /.container-fluid -->
     </nav>
 
+	
+	<section id="portfolio">
+	<br><br><br>
+        <div class="container" id = "topS">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Paper Review</h2>
+                    <hr class="star-primary">
+                </div>
+			</div>
+        
+		<center>
+		
+		<label for="qmt-vehicle"><h3>Semister:</h3></label>
+<select id="qmt-vehicle" name="vehicle" onchange="updateManufacturer(this)">
+    <option></option>
+    <option class="1" value="1">1</option>
+    <option class="2" value="2">2</option>
+	<option class="3" value="3">3</option>
+	<option class="4" value="4">4</option>
+    <option class="5" value="5">5</option>
+	<option class="6" value="6">6</option>
+    <option class="7" value="7">7</option>
+	<option class="8" value="8">8</option>
+	
+</select>
+<label for="qmt-manufacturer"><h3>Select Section:</h3></label>
+<select id="asd" name="manufacturer">
+    </select>			
+			
     <!-- Header -->
+	
    <center> 
-	<div id="pie">  </div>
+	<div id="pie"><br>  </div>
+	
        <div class="row col-lg-12">
+	   
           <div class="intro-text">
-            <br><br><br>
+            
+			 <hr style="height:5px;border:none;color:#091933;background-color:#091933;" />
+			<h2> PIE CHART </h2>
 			</div>
 			 <div class="col-lg-12 text-center" >		
 					<br><br>
-				 <h2> PIE CHART </h2>
+				 
+				                
 				 <br>
                 </div>
 	   <div id="chart_div">
@@ -190,13 +270,13 @@
 	  </center>
    
   	   <div id="combo"></div>
-            <hr style="height:5px;border:none;color:#091933;background-color:#091933;" />
+           
             <br>
 			
           <div class="row">
 		
                <div class="col-lg-12 text-center" >		
-					
+					 <hr style="height:5px;border:none;color:#091933;background-color:#091933;" />
 				 <h2> Combo CHART </h2>
 				 
                 </div>
