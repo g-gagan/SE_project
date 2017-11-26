@@ -59,13 +59,12 @@
 			data.addColumn('string', 'Topping');
 			data.addColumn('number', 'Slices');
 			data.addRows([
-		/*	  ['S', 3],
+			  ['S', 3],
 			  ['A', 1],
 			  ['B', 1],
 			  ['C', 1],
 			  ['E', 2],
-			  ['F', 1]
-		*/	  
+			  ['F', 1]	  
 			]);
 	
 			// Set chart options
@@ -88,56 +87,62 @@
       google.charts.setOnLoadCallback(drawVisualization);
 
       function drawVisualization() {
-        // Some raw data (not necessarily accurate)
-        var data = google.visualization.arrayToDataTable([
-/*         ['Subjects',    'Software Engineering'],
-         ['01FB14ECS01',          95],
-         ['01FB14ECS02',          82],
-         ['01FB14ECS03',          76],
-         ['01FB14ECS04',          83],
-         ['01FB14ECS05',          78],
-		 ['01FB14ECS01',          95],
-         ['01FB14ECS02',          82],
-         ['01FB14ECS03',          76],
-         ['01FB14ECS04',          83],
-         ['01FB14ECS05',          78],
-		 ['01FB14ECS01',          95],
-         ['01FB14ECS02',          82],
-         ['01FB14ECS03',          76],
-         ['01FB14ECS04',          83],
-         ['01FB14ECS05',          78],
-		 ['01FB14ECS01',          95],
-         ['01FB14ECS02',          82],
-         ['01FB14ECS03',          76],
-         ['01FB14ECS04',          83],
-         ['01FB14ECS05',          78],
-		 ['01FB14ECS01',          95],
-         ['01FB14ECS02',          82],
-         ['01FB14ECS03',          76],
-         ['01FB14ECS04',          83],
-         ['01FB14ECS05',          78],
-		 ['01FB14ECS01',          95],
-         ['01FB14ECS02',          82],
-         ['01FB14ECS03',          76],
-         ['01FB14ECS04',          83],
-         ['01FB14ECS05',          78],
-		 ['01FB14ECS01',          95],
-         ['01FB14ECS02',          82],
-         ['01FB14ECS03',          76],
-         ['01FB14ECS04',          83],
-         ['01FB14ECS05',          78],
-		 ['01FB14ECS01',          95],
-         ['01FB14ECS02',          82],
-         ['01FB14ECS03',          76],
-         ['01FB14ECS04',          83],
-         ['01FB14ECS05',          78],
-		 ['01FB14ECS01',          95],
-         ['01FB14ECS02',          82],
-         ['01FB14ECS03',          76],
-         ['01FB14ECS04',          83],
-         ['01FB14ECS05',          78]
-         */
-      ]);
+         var  asd = document.getElementById('asd'); //section
+         var  semester = document.getElementById('qmt-vehicle'); //sem
+         //alert(asd.value);
+         //alert(semester.value);
+         $.post("http://localhost:3000/analyticsTeacher",{"sem":semester.value,"sec":asd.value})
+            .done(function(results)
+            {   
+                console.log(JSON.stringify(results)); //response is an Array of JSON
+                //var data = google.visualization.arrayToDataTable([results[0].USN,results[0].total]);
+
+// TO convert Array of JSON to Array of Arrays
+                function transform(data){
+
+                    var prepared = data.map(function(row){
+                    var keys = Object.keys(row);
+                    var values = keys.map(function(key){
+                    return row[key];
+                        });
+                    var columnOne = values[0];
+                    var otherColumns = values.slice(1);
+
+                    return {
+                    letter: columnOne,
+                    numbers: otherColumns
+                    };
+
+                    });    
+
+                    var rows = [];
+                    prepared.forEach(function(row){
+
+                    row.numbers.forEach(function(number, i){
+
+                    if( i >= rows.length ){
+                        rows.push([]);
+                    }
+
+                    rows[i].push([+number, row.letter]);
+
+        });
+
+    });    
+
+    return rows;
+
+}
+
+
+//var converted =  transform(results) ;
+
+///////
+            var converted = results.map(el=>Object.values(el));
+            console.log(JSON.stringify(converted)); //converted to array of arrays
+            converted[0] = ['Subjects',    'Software Engineering'];
+            var data = google.visualization.arrayToDataTable(converted);
+         
 
     var options1 = {
       title : 'Students Scores',
@@ -149,13 +154,13 @@
 
     var chart = new google.visualization.ComboChart(document.getElementById('chart_div1'));
     chart.draw(data, options1);
-  }
+    });
+};
     </script>
 <!-- Combo chart function End -->
 
 <script type="text/javascript">
 function updateManufacturer(val) {
-	//alert();
 	if(val.value=="1")
 		asd.innerHTML='<option value="A">A</option><option value="B">B</option><option value="C">C</option>';
 	else if(val.value=="2")
@@ -243,7 +248,7 @@ function updateManufacturer(val) {
 	
 </select>
 <label for="qmt-manufacturer"><h3>Select Section:</h3></label>
-<select id="asd" name="manufacturer">
+<select id="asd" name="manufacturer" onchange="drawVisualization()">
     </select>			
 			
     <!-- Header -->

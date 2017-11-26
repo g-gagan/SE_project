@@ -111,10 +111,18 @@ exports.checkLoginEntry = function(UserName, password, completeWithStatus) {
    }
     /* Students Analytics */
     exports.getTotal = function(course , completeWithStatus){
-        console.log("hello");
         connection.query('SELECT `USN` , `total` FROM `student_details` WHERE `Course` = ?', [course], (err , results , fields) => {
         if(err) console.log(err);
         console.log(results);
         return completeWithStatus(200,results);
     });
-   };
+}   
+   /* Teachers Analytics */
+    exports.getSec = function(sem, sec , completeWithStatus){
+        console.log("hello");
+        connection.query('SELECT `USN` , `total` FROM `student_details` WHERE `sem` = ? AND `sec` = ?', [sem,sec], (err , results , fields) => {
+        if(err) console.log(err);
+        console.log(results);
+        return completeWithStatus(200,results);
+    });
+    }

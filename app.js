@@ -18,13 +18,6 @@ app.use(express.static(__dirname+'/public')); //connects the public folder to fr
 
 
 
-/*
-app.get('/login', (req,res) => {
-
-
-}*/
-
-
  //email - authentication 
 
 
@@ -108,6 +101,13 @@ app.post('/getStudent',(req,res)=>{
 
 app.post('/analyticsStud',(req,res) =>{
 		database.getTotal(req.body.course,(status,results) => {
+			res.status(status).send(results);
+		});
+
+	});
+
+app.post('/analyticsTeacher',(req,res) =>{
+		database.getSec(req.body.sem,req.body.sec,(status,results) => {
 			res.status(status).send(results);
 		});
 
