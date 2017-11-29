@@ -8,7 +8,7 @@ exports.createConnection = function() {
         host: 'localhost',
         user: 'root',
         password: '',
-        database: 'exam'
+        database: 'onlineeval'
     });
     connection.connect((err) => {
         if (err) throw err;
@@ -51,7 +51,7 @@ exports.checkLoginEntry = function(UserName, password, completeWithStatus) {
        //console.log("OTP:" + otp);
        //console.log("Type:" + results[0].Type)
        if (otp == results[0].OTP)
-       { console.log("checked");
+       { console.log(" OTP checked");
         return completeWithStatus(200,results[0].Type);
     }
     else return completeWithStatus(404);
@@ -59,9 +59,9 @@ exports.checkLoginEntry = function(UserName, password, completeWithStatus) {
     });
     }
 
-    exports.updateMarks= function(user,oa,ob,oc,toa,tob,toc,tha,thb,thc,oar,obr,ocr,toar,tobr,tocr,thar,thbr,thcr,completeWithStatus)
+    exports.updateMarks= function(user,link,oa,ob,oc,toa,tob,toc,tha,thb,thc,oar,obr,ocr,toar,tobr,tocr,thar,thbr,thcr,completeWithStatus)
     {
-       connection.query('UPDATE `student_details` SET `1a`= ? , `1b`= ? , `1c`= ?, `2a`= ? , `2b`= ? , `2c` = ? , `3a`= ? , `3b`= ? , `3c` = ?, `R1` = ?, `R2` = ?,`R3` = ?,`R4` = ?,`R5` = ?,`R6` = ?,`R7` = ?,`R8` = ?,`R9` = ?   WHERE `UserName` = ?' , [oa,ob,oc,toa,tob,toc,tha,thb,thc,oar,obr,ocr,toar,tobr,tocr,thar,thbr,thcr,user] ,(err,results,fields) => 
+       connection.query('UPDATE `student_details` SET `onea`= ? , `oneb`= ? , `onec`= ?, `twoa`= ? , `twob`= ? , `twoc` = ? , `threea`= ? , `threeb`= ? , `threec` = ?, `R1` = ?, `R2` = ?,`R3` = ?,`R4` = ?,`R5` = ?,`R6` = ?,`R7` = ?,`R8` = ?,`R9` = ?   WHERE `TeacherName` = ? AND `LINK` = ?' , [oa,ob,oc,toa,tob,toc,tha,thb,thc,oar,obr,ocr,toar,tobr,tocr,thar,thbr,thcr,user,link] ,(err,results,fields) => 
        {
              //console.log("w1");
              if (err) {
@@ -129,21 +129,22 @@ exports.checkLoginEntry = function(UserName, password, completeWithStatus) {
     exports.view = function(user,course,completeWithStatus)
    {
         console.log("Entering db.js");
-        connection.query('SELECT `USN` from `student_name` where `UserName` = ?', [user] ,(err, results1, fields) => 
+        connection.query('SELECT `onea`,`oneb`,`onec`,`twoa`,`twob`,`twoc`,`threea`,`threeb`,`threec`,`R1`,`R2`,`R3`,`R4`,`R5`,`R6`,`R7`,`R8`,`R9` from `student_details` where `StudentName` = ? AND `Course`=? ', [user,course] ,(err, results, fields) => 
         {
             if (err) 
             {
-                console.log("Error Poda");
+                console.log("Error while updating Marks and Reviews:");
                 console.log(err);
-                return completeWithStatus(409);
+                return completeWithStatus(404);
             }
             else 
             {
-                console.log("Entering db.js");
+                console.log("Student Marks");
+                console.log(results);
 
-                
+                return completeWithStatus(200,results);
 
-                return completeWithStatus(200);
+                //return completeWithStatus(200,results[0].1a,results[0].1b,results[0].1b,results[0].1c,results[0].2a,results[0].2b,results[0].2c,results[0].3a,results[0].3b,results[0].3c,results[0].oar,results[0].obr,results[0].ocr,results[0].toar,results[0].tobr,results[0].tocr,results[0].thar,results[0].thbr,results[0].thcr);
             }
         });    
    }   
@@ -151,11 +152,12 @@ exports.checkLoginEntry = function(UserName, password, completeWithStatus) {
 
    exports.getStud= function(user,course,completeWithStatus)
    {
-    connection.query('SELECT `USN` ,`LINK` FROM `student_details` WHERE `UserName` = ? AND `Course` = ?', [user,course], (err,results,fields) => 
+    connection.query('SELECT `USN` ,`LINK` FROM `student_details` WHERE `TeacherName` = ? AND `Course` = ?', [user,course] ,(err,results,fields) => 
     {
         if(err) console.log(err);
-        //console.log("print");
-        console.log(results);
+        console.log("USER");
+        console.log(user);
+        //console.log(results);
         return completeWithStatus(200,results);
 
     });

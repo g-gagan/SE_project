@@ -62,17 +62,26 @@
 		$.post("http://localhost:3000/view",{"stu_user":user[1] ,"course":x})
 		.done(function(result)
 		{
-			/*document.getElementById("1a").value=result.1a;
-			document.getElementById("1b").value=result.1b;
-			document.getElementById("1c").value=result.1c;
-			document.getElementById("2a").value=result.2a;
-			document.getElementById("2b").value=result.2b;
-			document.getElementById("2c").value=result.2c;
-			document.getElementById("3a").value=result.3a;
-			document.getElementById("3b").value=result.3b;
-			document.getElementById("3c").value=result.3c;*/
+			document.getElementById("1a").value=result[0].onea;
+			document.getElementById("1b").value=result[0].oneb;
+			document.getElementById("1c").value=result[0].onec;
+			document.getElementById("2a").value=result[0].twoa;
+			document.getElementById("2b").value=result[0].twob;
+			document.getElementById("2c").value=result[0].twoc;
+			document.getElementById("3a").value=result[0].threea;
+			document.getElementById("3b").value=result[0].threeb;
+			document.getElementById("3c").value=result[0].threec;
+            document.getElementById("1arev").value=result[0].R1;
+            document.getElementById("1brev").value=result[0].R2;
+            document.getElementById("1crev").value=result[0].R3;
+            document.getElementById("2arev").value=result[0].R4;
+            document.getElementById("2brev").value=result[0].R5;
+            document.getElementById("2crev").value=result[0].R6;
+            document.getElementById("3arev").value=result[0].R7;
+            document.getElementById("3brev").value=result[0].R8;
+            document.getElementById("3crev").value=result[0].R9;
 
-			alert(result);
+			//alert(result);
 
 			document.getElementById("table1").style.display = "block";
 
@@ -105,14 +114,14 @@
                         <a href="#page-top"></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#contact" id="navsign">Sign in</a>
+                        <a href="#contact" id="navsign">View Marks and Reviews</a>
                     </li>
-                    <li class="page-scroll">
+                    <!--<li class="page-scroll">
                         <a href="#portfolio">Information</a>
                     </li>
                     <li class="page-scroll">
                         <a href="#about">About</a>
-                    </li>
+                    </li>-->
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -134,8 +143,17 @@
         
 		<center><p>Choose Subject: <select id="subject" ></center>
 			<option> </option>
-			<option>Machine Learning </option>
-			<option>SE</option>
+			<option>Cloud Computing</option>
+            <option>Object Oriented Modelling and Design</option>
+            <option>Parallel Computing</option>
+            <option>Storage Area Networks</option>
+            <option>Data Analytics</option>
+            <option>Social Network Analytics</option>
+            <option>Information Security</option>
+            <option>Web Services</option>
+            <option>Enterprise Resourse Planning</option>
+            <option>Machine Learning </option>
+            <option>SE</option>
 	</select>
 
 	<input type="button" id="getmarks" onclick="getMarks()" value="Get Marks" />
@@ -235,10 +253,10 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="footer-col col-md-4">
-                        <h3>About AudioGram</h3>
+                    <!--<div class="footer-col col-md-4">
+                       <h3>About AudioGram</h3>
                         <p>AudioGram is a platform for music enthusiasts.</p>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>
@@ -246,7 +264,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        Copyright &copy; Audiogram.com 2017
+                        <!--Copyright &copy; Audiogram.com 2017-->
                     </div>
                 </div>
             </div>

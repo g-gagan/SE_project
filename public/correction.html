@@ -67,12 +67,16 @@
 		
 		   var user=document.cookie.split("=");
 
-		$.post("http://localhost:3000/update",{"user":user[1] ,"onea":onea, "oneb":oneb, "onec":onec, "twoa":twoa,"twob":twob,   
+           var lnk = document.getElementById("0link").innerHTML;
+           alert(lnk);
+
+		$.post("http://localhost:3000/update",{"user":user[1] ,"link":lnk,"onea":onea, "oneb":oneb, "onec":onec, "twoa":twoa,"twob":twob,   
             "twoc":twoc,"threea":threea,"threeb":threeb,"threea":threec,"onearev":onearev,"onebrev":onebrev,"onecrev":onecrev,"twoarev":twoarev,"twobrev":twobrev,"twocrev":twocrev,"threearev":threearev,"threebrev":threebrev,"threecrev":threecrev}) //"threea":threea, "threeb":threeb, "threec": threec, "onearev": onearev,"onebrev":onebrev, "onecrev": onecrev, "twoarev":twoarev, "twobrev":twobrev, "twocrev": twocrev})
 		.done(function(result)
 		{
 			
-			alert("KUSHALLL");
+			//alert("KUSHALLL");
+            console.log("Marks and reviews sent to db");
 		})
 
 	}
@@ -152,6 +156,7 @@
                 var cell3 = row.insertCell(2);
                 cell1.innerHTML = result[i].USN;
                 cell2.innerHTML = result[i].LINK;
+                cell2.id = i+"link";
                 cell3.appendChild(button);
                 button.onclick=getpaper;
             }
@@ -169,7 +174,7 @@
         var table=document.getElementById(revboxid + "abc");
 
         var div_pdf = document.getElementById("pdf");
-        
+
         while (div_pdf.firstChild) 
         {
             div_pdf.removeChild(div_pdf.firstChild);
@@ -234,14 +239,14 @@
                         <a href="#page-top"></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#contact" id="navsign">Sign in</a>
+                        <a href="#contact" id="navsign">View Paper</a>
                     </li>
-                    <li class="page-scroll">
-                        <a href="#portfolio">Information</a>
+                   <li class="page-scroll">
+                        <a href="#portfolio">Enter Marks and Reviews</a>
                     </li>
-                    <li class="page-scroll">
+                    <!--<li class="page-scroll">
                         <a href="#about">About</a>
-                    </li>
+                    </li>-->
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -262,11 +267,20 @@
 			</div>
         
 		<center><p>Choose Subject: <select id="subject" onchange="selectfunc()"></center>
-			<option> </option>
+			<option>Cloud Computing</option>
+            <option>Object Oriented Modelling and Design</option>
+            <option>Parallel Computing</option>
+            <option>Storage Area Networks</option>
+            <option>Data Analytics</option>
+            <option>Social Network Analytics</option>
+            <option>Information Security</option>
+            <option>Web Services</option>
+            <option>Enterprise Resourse Planning</option>
 			<option>Machine Learning </option>
 			<option>SE</option>
 		</select>
         <input type="button" value="Student List" onclick="getlist()"></input>
+
 
 
 		<center>
@@ -296,62 +310,62 @@
 						
 						<tr>
 							<td>1a</td>
-							<td> <input type="text" style="width: 30px; height: 100%" id="1a" onfocus="showrev(event)"  />
+							<td> <input type="password" style="width: 30px; height: 100%" id="1a" onfocus="showrev(event)"  />
 						
 							<td>1b</td>
-							<td> <input type="text" style="width: 30px; height: 100%" id="1b" onfocus="showrev(event)" /> 
+							<td> <input type="password" style="width: 30px; height: 100%" id="1b" onfocus="showrev(event)" /> 
 							
 							<td>1c</td>
-							<td> <input type="text" style="width: 30px; height: 100%" id="1c" onfocus="showrev(event)" /> 
+							<td> <input type="password" style="width: 30px; height: 100%" id="1c" onfocus="showrev(event)" /> 
 						
 							<td>2a</td>
-							<td> <input type="text" style="width: 30px; height: 100%" id="2a" onfocus="showrev(event)"/> 
+							<td> <input type="password" style="width: 30px; height: 100%" id="2a" onfocus="showrev(event)"/> 
 						
 							<td>2b</td>
-							<td> <input type="text" style="width: 30px; height: 100%" id="2b" onfocus="showrev(event)"/> 
+							<td> <input type="password" style="width: 30px; height: 100%" id="2b" onfocus="showrev(event)"/> 
 							
 							<td>2c</td>
-							<td> <input type="text" style="width: 30px; height: 100%" id="2c" onfocus="showrev(event)"/> 
+							<td> <input type="password" style="width: 30px; height: 100%" id="2c" onfocus="showrev(event)"/> 
 							
 							<td>3a</td>
-							<td> <input type="text" style="width: 30px; height: 100%" id="3a" onfocus="showrev(event)"/> 
+							<td> <input type="password" style="width: 30px; height: 100%" id="3a" onfocus="showrev(event)"/> 
 						
 							<td>3b</td>
-							<td> <input type="text" style="width: 30px; height: 100%" id="3b" onfocus="showrev(event)"/> 
+							<td> <input type="password" style="width: 30px; height: 100%" id="3b" onfocus="showrev(event)"/> 
 							
 							<td>3c</td>
-							<td> <input type="text" style="width: 30px; height: 100%" id="3c" onfocus="showrev(event)"/> 
+							<td> <input type="password" style="width: 30px; height: 100%" id="3c" onfocus="showrev(event)"/> 
 						</tr>
 						</table>
 						
 					
 					<table>
 					<tr>
-						<td><input type="text" style="width: 250px; height: 100%; display:none" id="1arev" onblur="abc(event)" ;/>
+						<td><input type="password" style="width: 250px; height: 100%; display:none" id="1arev" onblur="abc(event)" ;/>
 					</tr>
 					<tr>
-						<td><input type="text" style="width: 250px; height: 100%; display:none" id="1brev" onblur="abc(event)" />
+						<td><input type="password" style="width: 250px; height: 100%; display:none" id="1brev" onblur="abc(event)" />
 					</tr>
 					<tr>
-						<td><input type="text" style="width: 250px; height: 100%; display:none" id="1crev" onblur="abc(event)" />
+						<td><input type="password" style="width: 250px; height: 100%; display:none" id="1crev" onblur="abc(event)" />
 					</tr>
 					<tr>
-						<td><input type="text" style="width: 250px; height: 100%; display:none" id="2arev" onblur="abc(event)" />
+						<td><input type="password" style="width: 250px; height: 100%; display:none" id="2arev" onblur="abc(event)" />
 					</tr>
 					<tr>
-						<td><input type="text" style="width: 250px; height: 100%; display:none" id="2brev" onblur="abc(event)" />
+						<td><input type="password" style="width: 250px; height: 100%; display:none" id="2brev" onblur="abc(event)" />
 					</tr>
 					<tr>
-						<td><input type="text" style="width: 250px; height: 100%; display:none" id="2crev" onblur="abc(event)" />
+						<td><input type="password" style="width: 250px; height: 100%; display:none" id="2crev" onblur="abc(event)" />
 					</tr>
 					<tr>
-						<td><input type="text" style="width: 250px; height: 100%; display:none" id="3arev" onblur="abc(event)" />
+						<td><input type="password" style="width: 250px; height: 100%; display:none" id="3arev" onblur="abc(event)" />
 					</tr>
 					<tr>
-						<td><input type="text" style="width: 250px; height: 100%; display:none" id="3brev" onblur="abc(event)" />
+						<td><input type="password" style="width: 250px; height: 100%; display:none" id="3brev" onblur="abc(event)" />
 					</tr>
 					<tr>
-						<td><input type="text" style="width: 250px; height: 100%; display:none" id="3crev" onblur="abc(event)" />
+						<td><input type="password" style="width: 250px; height: 100%; display:none" id="3crev" onblur="abc(event)" />
 					</tr>
 					
 					

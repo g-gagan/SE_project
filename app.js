@@ -45,7 +45,7 @@ app.post('/index',(req,res)=>{
                     },
 
                      function(data) {
-                    	console.log("Mahesh");
+                    	console.log("OTP has been sent to the email");
                     	database.addLogin(req.body.user,otp, (status) => {
                     		//if(status==200)
                     			//res.sendStatus(status);
@@ -82,7 +82,7 @@ app.post('/otp',(req,res)=>{
 app.post('/update',(req,res)=>{
 	//console.log("otp checking");
 	//console.log(req.body.otp);
-	database.updateMarks(req.body.user, req.body.onea, req.body.oneb, req.body.onec, req.body.twoa ,req.body.twob ,req.body.twoc, req.body.threea, req.body.threeb, req.body.threec,
+	database.updateMarks(req.body.user, req.body.link,req.body.onea, req.body.oneb, req.body.onec, req.body.twoa ,req.body.twob ,req.body.twoc, req.body.threea, req.body.threeb, req.body.threec,
 							req.body.onearev, req.body.onebrev, req.body.onecrev, req.body.twoarev ,req.body.twobrev ,req.body.twocrev, req.body.threearev, req.body.threebrev, req.body.threecrev,	(status)=>{
 		res.sendStatus(status);
 	});
