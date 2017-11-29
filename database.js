@@ -63,7 +63,7 @@ exports.checkLoginEntry = function(UserName, password, completeWithStatus) {
     {
        connection.query('UPDATE `student_details` SET `onea`= ? , `oneb`= ? , `onec`= ?, `twoa`= ? , `twob`= ? , `twoc` = ? , `threea`= ? , `threeb`= ? , `threec` = ?, `R1` = ?, `R2` = ?,`R3` = ?,`R4` = ?,`R5` = ?,`R6` = ?,`R7` = ?,`R8` = ?,`R9` = ?   WHERE `TeacherName` = ? AND `LINK` = ?' , [oa,ob,oc,toa,tob,toc,tha,thb,thc,oar,obr,ocr,toar,tobr,tocr,thar,thbr,thcr,user,link] ,(err,results,fields) => 
        {
-             //console.log("w1");
+             console.log("Update");
              if (err) {
                 console.log(err);
                 return completeWithStatus(409);
